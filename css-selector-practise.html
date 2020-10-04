@@ -5,27 +5,35 @@
     <meta charset="utf-8">
     <title>Document</title>
     <style>
+      body > p:first-child {color: red;}
+
+      [tabindex="-1"]:link {color:black;} 
+      [tabindex="-1"]:focus{color:blue;} 
+      [tabindex="-1"]:hover{color: red;} 
+      [tabindex="-1"]:active{color:green;}
+
+      .c > span {color:red;}
       .c > span :first-child {color: green;}
       .c > span :last-child {color: blue;}
-      body p[class="a c"] > span  {color:red;}
-      [tabindex="-1"]:link {color:black;} [tabindex="-1"]:focus{color:blue;} [tabindex="-1"]:hover{color: red;} [tabindex="-1"]:active{color:green;}
-      body > p:first-child {color: red;};
 
-      body div a:link {color: orange;}:visited {color: orange;}
-      body div a+a+a {color: pink;}:visited {color: orange;}
-      body div a+a+a+a {color: blue;}:visited {color: orange;}
-      body div a+a+a+a+a+a {color: yellow;}:visited {color: orange;}
-      body div a+a+a+a+a+a+a+a {color: pink;} :visited {color: orange;}
-      body div a+a+a+a+a+a+a+a{font-size: 30px}
+      a:link {color: pink;}
+      a:visited {color: orange;}
+      a[href*="a@b"] {color: blue;}
+      a[href^="tel:"] {color: yellow;}
+      a[href*="aaa"] {font-size: 30px;}
 
       [class="a"] ul > li:nth-child(n + 4):nth-child(-n + 7) {color: red;}
 
       [class="b"] ul > li:nth-child(-n + 25) {color: red;}
       [class="b"] ul > li:nth-child(n + 35):nth-child(-n + 50) {color: blue;}
       [class="b"] ul > li:nth-child(n + 65) {color: green;}
-      
 
-      
+      .prime > ul > li:first-child {color: rgb(255, 0, 0);}
+      .prime > ul > li {color: rgb(153, 0, 255);}
+      .prime > ul > li:nth-child(2n + 4),
+      .prime > ul > li:nth-child(3n + 9),
+      .prime > ul > li:nth-child(5n + 10), 
+      .prime > ul > li:nth-child(7n + 49) {color: rgb(31, 189, 0);}
     </style>
   </head>
   <body>
