@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>JS Bin</title>
+  </head>
+  <style>
+    * {
+      /*  background-color: #0001; */
+      /*  box-shadow: 0 0 2px red; */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      zoom: 1.5;
+    }
+
+    div {
+      width: 300px;
+      height: 200px;
+      border: 5px solid;
+      position: relative;
+    }
+    div img {
+      width: 100%;
+      height: 100%;
+      xleft: 100%;
+      position: absolute;
+      opacity: 0;
+      transition: 1s;
+    }
+    input {
+      position: relative;
+      top: 196px;
+      left: 120px;
+      z-index: 20;
+    }
+
+    label {
+      color: white;
+      font-size: 20px;
+      user-select: none;
+    }
+
+    label#img1 {
+      position: absolute;
+      top: 100px;
+      left: 5px;
+      z-index: 30;
+    }
+    label#img2 {
+      position: absolute;
+      top: 100px;
+      left: 5px;
+      z-index: 30;
+    }
+    label#img3 {
+      position: absolute;
+      top: 100px;
+      left: 5px;
+      z-index: 30;
+    }
+    label#img4 {
+      position: absolute;
+      top: 100px;
+      left: 5px;
+      z-index: 30;
+    }
+
+    input#img1:checked ~ label#img4 {
+      z-index: 100;
+    }
+    input#img4:checked ~ label#img3 {
+      z-index: 100;
+    }
+    input#img3:checked ~ label#img2 {
+      z-index: 100;
+    }
+    input#img2:checked ~ label#img1 {
+      z-index: 100;
+    }
+
+    label#img11 {
+      position: absolute;
+      top: 100px;
+      z-index: 30;
+      left: 275px;
+    }
+    label#img22 {
+      position: absolute;
+      top: 100px;
+      z-index: 30;
+      left: 275px;
+    }
+    label#img33 {
+      position: absolute;
+      top: 100px;
+      z-index: 30;
+      left: 275px;
+    }
+    label#img44 {
+      position: absolute;
+      top: 100px;
+      z-index: 30;
+      left: 275px;
+    }
+    input#img1:checked ~ label#img22 {
+      z-index: 100;
+    }
+    input#img4:checked ~ label#img11 {
+      z-index: 100;
+    }
+    input#img3:checked ~ label#img44 {
+      z-index: 100;
+    }
+    input#img2:checked ~ label#img33 {
+      z-index: 100;
+    }
+
+    input:nth-child(1):checked ~ div img:nth-child(1),
+    input:nth-child(2):checked ~ div img:nth-child(2),
+    input:nth-child(3):checked ~ div img:nth-child(3),
+    input:nth-child(4):checked ~ div img:nth-child(4) {
+      xleft: 0;
+      z-index: 10;
+      opacity: 1;
+    }
+  </style>
+  <body>
+    <input checked type="radio" name="img" id="img1" />
+    <input type="radio" name="img" id="img2" />
+    <input type="radio" name="img" id="img3" />
+    <input type="radio" name="img" id="img4" />
+    <label for="img1" id="img1">◁</label>
+    <label for="img2" id="img2">◁</label>
+    <label for="img3" id="img3">◁</label>
+    <label for="img4" id="img4">◁</label>
+
+    <label for="img1" id="img11">▷</label>
+    <label for="img2" id="img22">▷</label>
+    <label for="img3" id="img33">▷</label>
+    <label for="img4" id="img44">▷</label>
+
+    <div>
+      <img
+        src="https://tse4-mm.cn.bing.net/th/id/OIP.90FypOStSCm_T4659qu23AHaEK?w=281&h=180&c=7&o=5&dpr=2.75&pid=1.7"
+      />
+      <img
+        src="https://tse2-mm.cn.bing.net/th/id/OIP.702yHxVYKS3N_oz9ZFDJbgHaEK?w=281&h=180&c=7&o=5&dpr=2.75&pid=1.7"
+      />
+      <img
+        src="https://tse1-mm.cn.bing.net/th/id/OIP.dfFNIfrm3evbR0Yo9jVF7wHaEK?w=265&h=180&c=7&o=5&dpr=2.75&pid=1.7"
+      />
+      <img
+        src="https://tse4-mm.cn.bing.net/th/id/OIP.D35xV86tdXDccZsjGg1FAgHaEK?w=265&h=180&c=7&o=5&dpr=2.75&pid=1.7"
+      />
+      <img
+        src="https://tse2-mm.cn.bing.net/th/id/OIP.UIP9p8eWDnF7k3xhQusz2AHaEK?w=265&h=180&c=7&o=5&dpr=2.75&pid=1.7"
+      />
+    </div>
+  </body>
+</html>
