@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>JS Bin</title>
+  </head>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: auto;
+      border: 3px solid;
+    }
+    tr {
+      border: 1px solid silver;
+    }
+
+    table.table {
+      background-color: white;
+    }
+    table.table [scope] {
+      color: ;
+    }
+
+    table.table-dark {
+      background-color: rgb(52, 58, 64);
+      color: white;
+    }
+    table.table-dark [scope] {
+      color: white;
+    }
+
+    table.thead-light {
+      background-color: rgb(233, 236, 239);
+      color: black;
+    }
+    table.thead-light [scope] {
+      color: black;
+    }
+    table.thead-light [scope="col"] {
+      background-color: rgb(233, 236, 239);
+      color: black;
+    }
+
+    table.thead-dark {
+      background-color: rgb(233, 236, 239);
+      color: black;
+    }
+    table.thead-dark [scope] {
+      color: black;
+    }
+    table.thead-dark [scope="col"] {
+      background-color: rgb(52, 58, 64);
+      color: white;
+    }
+  </style>
+  <body>
+    <table class="table table-dark thead-light thead-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
