@@ -6,160 +6,193 @@
     <title>JS Bin</title>
   </head>
   <style>
+    /*  *{background-color: rgba(0,0,0,0.1);
+ box-shadow:0 0 1px red}  */
     * {
-      /*  background-color: #0001; */
-      /*  box-shadow: 0 0 2px red; */
+      user-select: none;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
+    ul {
+      list-style: none;
       padding: 0;
-    }
-    html {
-      zoom: 1.5;
-    }
-
-    div {
-      width: 300px;
-      height: 200px;
-      border: 5px solid;
-      position: relative;
-    }
-    div img {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      opacity: 0;
-      transition: 1s;
+      margin: 0;
     }
     input {
+      display: none;
+    }
+    div {
+      width: 455px;
+      height: 256px;
+      border: 3px solid;
       position: relative;
-      top: 196px;
-      left: 120px;
-      z-index: 20;
+    }
+    div ul {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    div ul li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: 0.6s;
+    }
+
+    div ul lu img {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     label {
-      color: white;
-      font-size: 20px;
-      user-select: none;
-    }
-
-    label#img1 {
       position: absolute;
-      top: 100px;
-      left: 5px;
-      z-index: 30;
-    }
-    label#img2 {
-      position: absolute;
-      top: 100px;
-      left: 5px;
-      z-index: 30;
-    }
-    label#img3 {
-      position: absolute;
-      top: 100px;
-      left: 5px;
-      z-index: 30;
-    }
-    label#img4 {
-      position: absolute;
-      top: 100px;
-      left: 5px;
-      z-index: 30;
-    }
-
-    input#img1:checked ~ label#img4 {
-      z-index: 100;
-    }
-    input#img4:checked ~ label#img3 {
-      z-index: 100;
-    }
-    input#img3:checked ~ label#img2 {
-      z-index: 100;
-    }
-    input#img2:checked ~ label#img1 {
-      z-index: 100;
-    }
-
-    label#img11 {
-      position: absolute;
-      top: 100px;
-      z-index: 30;
-      left: 275px;
-    }
-    label#img22 {
-      position: absolute;
-      top: 100px;
-      z-index: 30;
-      left: 275px;
-    }
-    label#img33 {
-      position: absolute;
-      top: 100px;
-      z-index: 30;
-      left: 275px;
-    }
-    label#img44 {
-      position: absolute;
-      top: 100px;
-      z-index: 30;
-      left: 275px;
-    }
-    input#img1:checked ~ label#img22 {
-      z-index: 100;
-    }
-    input#img4:checked ~ label#img11 {
-      z-index: 100;
-    }
-    input#img3:checked ~ label#img44 {
-      z-index: 100;
-    }
-    input#img2:checked ~ label#img33 {
-      z-index: 100;
-    }
-
-    input:nth-child(1):checked ~ div img:nth-child(1),
-    input:nth-child(2):checked ~ div img:nth-child(2),
-    input:nth-child(3):checked ~ div img:nth-child(3),
-    input:nth-child(4):checked ~ div img:nth-child(4) {
-      z-index: 10;
+      height: 50px;
+      margin: auto;
       opacity: 1;
+      cursor: pointer;
+      text-align: center;
+      line-height: 50px;
+      font-size: 2em;
+    }
+
+    div ul li label:hover {
+      background-color: rgba(185, 185, 185, 0.2);
+      opacity: 1;
+    }
+
+    div ul li label:nth-child(1) {
+      top: 0;
+      bottom: 0;
+    }
+
+    div ul li label:nth-child(2) {
+      top: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    input:nth-child(1):checked ~ ul.slides > li:nth-child(1) {
+      opacity: 1;
+      z-index: 10;
+    }
+
+    input:nth-child(2):checked ~ ul.slides > li:nth-child(2) {
+      opacity: 1;
+      z-index: 10;
+    }
+
+    input:nth-child(3):checked ~ ul.slides > li:nth-child(3) {
+      opacity: 1;
+      z-index: 10;
+    }
+
+    input:nth-child(4):checked ~ ul.slides > li:nth-child(4) {
+      opacity: 1;
+      z-index: 10;
+    }
+
+    input:nth-child(5):checked ~ ul.slides > li:nth-child(5) {
+      opacity: 1;
+      z-index: 10;
+    }
+
+    .indicators {
+      position: absolute;
+      z-index: 20;
+      margin-top: -20px;
+      border: none;
+      width: 60%;
+      left: 20%;
+      height: 20px;
+    }
+
+    .indicators label {
+      display: inline-block;
+      width: 10px;
+      position: absolute;
+      top: 0;
+      height: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+    }
+
+    .indicators label:hover {
+      background-color: rgba(185, 185, 185, 1);
+      cursor: pointer;
+    }
+
+    input:nth-child(1):checked ~ .indicators > label:nth-child(1) {
+      background-color: rgba(185, 185, 185, 1);
+    }
+    input:nth-child(2):checked ~ .indicators > label:nth-child(2) {
+      background-color: rgba(185, 185, 185, 1);
+    }
+    input:nth-child(3):checked ~ .indicators > label:nth-child(3) {
+      background-color: rgba(185, 185, 185, 1);
+    }
+    input:nth-child(4):checked ~ .indicators > label:nth-child(4) {
+      background-color: rgba(185, 185, 185, 1);
+    }
+    input:nth-child(5):checked ~ .indicators > label:nth-child(5) {
+      background-color: rgba(185, 185, 185, 1);
     }
   </style>
   <body>
-    <input checked type="radio" name="img" id="img1" />
-    <input type="radio" name="img" id="img2" />
-    <input type="radio" name="img" id="img3" />
-    <input type="radio" name="img" id="img4" />
-    <label for="img1" id="img1">◁</label>
-    <label for="img2" id="img2">◁</label>
-    <label for="img3" id="img3">◁</label>
-    <label for="img4" id="img4">◁</label>
-
-    <label for="img1" id="img11">▷</label>
-    <label for="img2" id="img22">▷</label>
-    <label for="img3" id="img33">▷</label>
-    <label for="img4" id="img44">▷</label>
-
     <div>
-      <img
-        src="https://tse4-mm.cn.bing.net/th/id/OIP.90FypOStSCm_T4659qu23AHaEK?w=281&h=180&c=7&o=5&dpr=2.75&pid=1.7"
-      />
-      <img
-        src="https://tse2-mm.cn.bing.net/th/id/OIP.702yHxVYKS3N_oz9ZFDJbgHaEK?w=281&h=180&c=7&o=5&dpr=2.75&pid=1.7"
-      />
-      <img
-        src="https://tse1-mm.cn.bing.net/th/id/OIP.dfFNIfrm3evbR0Yo9jVF7wHaEK?w=265&h=180&c=7&o=5&dpr=2.75&pid=1.7"
-      />
-      <img
-        src="https://tse4-mm.cn.bing.net/th/id/OIP.D35xV86tdXDccZsjGg1FAgHaEK?w=265&h=180&c=7&o=5&dpr=2.75&pid=1.7"
-      />
-      <img
-        src="https://tse2-mm.cn.bing.net/th/id/OIP.UIP9p8eWDnF7k3xhQusz2AHaEK?w=265&h=180&c=7&o=5&dpr=2.75&pid=1.7"
-      />
+      <input type="radio" checked name="s1" id="s1-1" />
+      <input type="radio" name="s1" id="s1-2" />
+      <input type="radio" name="s1" id="s1-3" />
+      <input type="radio" name="s1" id="s1-4" />
+      <input type="radio" name="s1" id="s1-5" />
+
+      <ul class="slides">
+        <li>
+          <label for="s1-5">◁</label>
+          <label for="s1-2">▷</label>
+          <a href="https://starlightgx.github.io/miao/image/symphogear.jpg"
+            ><img src="" alt=""
+          /></a>
+        </li>
+        <li>
+          <label for="s1-1">◁</label>
+          <label for="s1-3">▷</label>
+          <a href="https://starlightgx.github.io/miao/image/G.jpg"
+            ><img src="" alt=""
+          /></a>
+        </li>
+        <li>
+          <label for="s1-2">◁</label>
+          <label for="s1-4">▷</label>
+          <a href="https://starlightgx.github.io/miao/image/GX.jpg"
+            ><img src="" alt=""
+          /></a>
+        </li>
+        <li>
+          <label for="s1-3">◁</label>
+          <label for="s1-5">▷</label>
+          <a href="https://starlightgx.github.io/miao/image/AXZ.jpg"
+            ><img src="" alt=""
+          /></a>
+        </li>
+        <li>
+          <label for="s1-4">◁</label>
+          <label for="s1-1">▷</label>
+          <a href="https://starlightgx.github.io/miao/image/XV.jpg"
+            ><img src="" alt=""
+          /></a>
+        </li>
+      </ul>
+
+      <div class="indicators">
+        <label for="s1-1" style="left: 35%"></label>
+        <label for="s1-2" style="left: 40%"></label>
+        <label for="s1-3" style="left: 45%"></label>
+        <label for="s1-4" style="left: 50%"></label>
+        <label for="s1-5" style="left: 55%"></label>
+      </div>
     </div>
   </body>
 </html>
