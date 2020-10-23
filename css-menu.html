@@ -9,531 +9,85 @@
     * {
       background-color: #0001;
       box-shadow: 0 0 2px red;
-    }
-
-    * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    ul {
-      list-style-type: none;
-      position: absolute;
-      top: 10%;
-    }
-
-    ul ul {
-      list-style: none;
-      position: absolute;
-      top: 0;
-      display: none;
-      left: 100%;
-    }
-
-    li {
-      position: relative;
-      display: none;
-    }
-
-    li:hover > ul {
-      display: block;
-    }
-
-    li:hover {
-      background-color: yellow;
       transition: 1s;
     }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      float: left;
+      border: 1px solid;
+      width: auto;
+    }
 
-    ul:hover li {
+    ul.one > li,
+    ul.two > li {
+      float: none;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    ul.two {
+      position: absolute;
+      top: 0;
+      left: 100%;
+    }
+    ul.two li {
+      display: none;
+    }
+    ul.two::before {
+      content: ">";
+      position: absolute;
+      left: -1em;
+    }
+
+    ul.one {
+      display: none;
+    }
+    ul.one > li {
+      padding-right: 1em;
+    }
+
+    li:hover ul.one {
       display: block;
     }
-
-    ul.menu1 {
-      list-style: none;
-      position: absolute;
-      left: 5%;
-    }
-
-    ul.menu2 {
-      list-style: none;
-      position: absolute;
-      left: 25%;
-    }
-
-    ul.menu3 {
-      list-style: none;
-      position: absolute;
-      left: 45%;
-    }
-
-    ul.menu4 {
-      list-style: none;
-      position: absolute;
-      left: 65%;
-    }
-
-    ul.menu5 {
-      list-style: none;
-      position: absolute;
-      left: 85%;
-    }
-    div {
-      height: 20vh;
+    ul.one li:hover ul.two li {
+      display: block;
     }
   </style>
-
   <body>
     <div>
-      <ul class="menu1">
-        菜单一
+      <ul class-="menu">
+        <li>第一层菜单</li>
         <li>
-          111111
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
+          第一层菜单
+          <ul class="one">
             <li>
               第二层
-              <ul>
-                <li>333333</li>
+              <ul class="two">
+                <li>第三层</li>
                 <li>第三层</li>
                 <li>第三层</li>
               </ul>
             </li>
+            <li>第二层</li>
+            <li>第二层</li>
             <li>
               第二层
-              <ul>
-                <li>333333</li>
+              <ul class="two">
+                <li>第三层</li>
                 <li>第三层</li>
                 <li>第三层</li>
               </ul>
             </li>
+            <li>第二层</li>
           </ul>
         </li>
-        <li>
-          11
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          111
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="menu2">
-        菜单二
-        <li>
-          111111
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          11
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          111
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="menu3">
-        菜单三
-        <li>
-          111111
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          11
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          111
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="menu4">
-        菜单四
-        <li>
-          111111
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          11
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          111
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="menu5">
-        菜单五
-        <li>
-          111111
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          11
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          111
-          <ul>
-            <li>
-              222222
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-            <li>
-              第二层
-              <ul>
-                <li>333333</li>
-                <li>第三层</li>
-                <li>第三层</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
+        <li>第一层菜单</li>
+        <li>第一层菜单</li>
       </ul>
     </div>
   </body>
