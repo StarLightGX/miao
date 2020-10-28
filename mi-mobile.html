@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=720, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style type="text/less">
+    * {
+      background-color: rgba(0, 0, 0, 0.1);
+      box-shadow: inset 0 0 6px blue;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: 0.7s;
+      text-decoration: none;
+      list-style: none;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .disb {
+      display: block;
+    }
+    .disib {
+      display: inline-block;
+    }
+    .disn {
+      display: none;
+    }
+    .posr {
+      position: relative;
+    }
+    .posa {
+      position: absolute;
+    }
+    .posf {
+      position: fixed;
+    }
+    .wid-1226 {
+      width: 1226px;
+    }
+    .mag-a {
+      margin: auto;
+    }
+    .ovh {
+      overflow: hidden;
+    }
+    .flol {
+      float: left;
+    }
+    .flor {
+      float: right;
+    }
+    .wid-720 {
+      width: 720px;
+    }
+
+    .header-bar {
+      xheight: 240px;
+      top: 0;
+      .bar-img {
+        height: 100px;
+        .close{height: 50px;
+        width: 50px;
+        margin-top: 25px;
+        border-radius: 9999px;
+        
+        }
+      }
+      .bar-wrapper {
+        height: 84px;
+        .logo{height: 84px;
+        width: 100px;}
+        .search{height: 84px;
+                width: 520px;
+                display: inline-flex;
+                padding: 12px 0 12px 0;
+                  input {
+                    height: 60px;
+                    width: 470px;
+                  }
+                  bottom {
+                    height: 60px;
+                    width: 60px;
+                  }
+              }
+        .me{height: 84px;
+        width: 100px;
+        }
+
+
+      }
+      .bar-menu {
+        height: 56px;
+        .bar-menu-item {
+          li {z-index: 100;
+            display: inline-block;
+            width: 98px;
+            height: 56.4px;
+            &:nth-last-child(1):hover > .bar-menu-list{height: 251px;z-index: 100;}
+              .bar-menu-list {
+              height: 0px;
+              padding: 0 25px 0 25px;
+              left: 0;
+              background-color: #fff;
+              section{
+                height: 50px;
+                width: 150px;
+              }
+              ul {
+                top: 56px;
+                width: 670px;
+                height: 160px;
+                xmargin-top: 34px;
+                li {
+                  float: left;
+                  height: 54px;
+                  width: 150px;
+                  margin: 0 16px 24px 0;
+                  display: inline-block;
+              }
+          }
+          }
+        }
+        
+        }
+      }
+    }
+    .slider-img {
+      margin-top: 240px;
+      height: 360px;
+      position: relative;
+      input {
+        display: none;
+      }
+      ul {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        li {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          transition: 0.6s;
+
+          label {
+            position: absolute;
+            height: 69px;
+            margin: auto;
+            opacity: 1;
+            cursor: pointer;
+            text-align: center;
+            line-height: 69px;
+            width: 41px;
+            font-size: 3em;
+
+            &:nth-child(1) {
+              top: 0;
+              bottom: 0;
+              right: 0;
+            }
+            &:nth-child(2) {
+              left: 0px;
+              top: 0;
+              bottom: 0;
+            }
+
+            &:hover {
+              background-color: rgba(185, 185, 185, 0.2);
+              opacity: 1;
+            }
+          }
+          a {
+            img {
+              width: 100%;
+              height: 100%;
+              display: block;
+            }
+          }
+        }
+      }
+      .indicators {
+        position: absolute;
+        z-index: 20;
+        border: none;
+        bottom: 20px;
+        width: 100px;
+        right: 310px;
+        height: 20px;
+
+        label {
+          display: inline-block;
+          width: 10px;
+          float: right;
+          margin: 5px 4px 5px 4px;
+          height: 10px;
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-radius: 9999px;
+
+          &:hover {
+            background-color: rgba(185, 185, 185, 1);
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .menu {
+      img {
+        display: block;
+        width: 144px;
+        height: 152px;
+      }
+      .menu-1 {
+        height: 152px;
+        ul {
+          li {
+            float: left;
+            display: inline-block;
+            width: 144px;
+            height: 152px;
+          }
+        }
+      }
+      .menu-2 {
+        height: 152px;
+        ul {
+          li {
+            float: left;
+            display: inline-block;
+            width: 144px;
+            height: 152px;
+          }
+        }
+      }
+    }
+    .block-img {
+      height: 508px;
+      img {
+        float: left;
+        height: 252px;
+        width: 358px;
+      }
+      .img-one {
+        height: 504px;
+      }
+    }
+    .long-img {
+      height: 280px;
+      img {
+        height: 280px;
+      }
+    }
+    .foot-bar {
+      height: 80px;
+      bottom: 0;
+      ul {
+           width: 720px;
+           li {
+             float: left;
+             height: 80px;
+             width: 144px;
+             display: inline-block;
+            }
+         }
+    }
+  </style>
+  <script src="less.js"></script>
+  <script src="sass.link.min.js"></script>
+  <body>
+    <div class="wid-720 posr">
+    <div class="header-bar wid-720 posf">
+      <div class="bar-img wid-720">
+        <img src="" alt="" />
+        <section class="close disib flol"></section>
+      </div>
+      <div class="bar-wrapper wid-720">
+        <div class="logo disib flol"></div>
+        <div class="search disib flol">
+          <form action="https://www.mi.com/search" class="search-form" name="keyword">
+          <button class="disib">search</button>
+          <input type="text" />
+          
+        </form>
+        </div>
+        <div class="me disib flol"></div>
+      </div>
+      <div class="bar-menu wid-720">
+        <div class="bar-menu-item posr">
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li>        
+             <div class="bar-menu-list wid-720 posa ovh">
+               <div class="ovh">
+               <section class="button-left disib flol"></section>
+               <section class="button-right disib flor"></section>
+               </div>
+             <ul class="posr">
+               <li></li>
+               <li></li>
+               <li></li>
+               <li></li>
+               <li></li>
+               <li></li>
+               <li></li>
+            </ul>
+        </li>
+          </ul>
+        </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="slider-img wid-720 posr">
+      <input type="radio" checked name="s1" id="s1-1" />
+      <input type="radio" name="s1" id="s1-2" />
+      <input type="radio" name="s1" id="s1-3" />
+      <input type="radio" name="s1" id="s1-4" />
+      <input type="radio" name="s1" id="s1-5" />
+
+      <ul class="slides">
+        <li>
+          <label for="s1-5"></label>
+          <label for="s1-2"></label>
+          <a href=""
+            ><img src="" alt=""
+          /></a>
+        </li>
+        <li>
+          <label for="s1-1"></label>
+          <label for="s1-3"></label>
+          <a href=""
+            ><img src="" alt=""
+          /></a>
+        </li>
+        <li>
+          <label for="s1-2"></label>
+          <label for="s1-4"></label>
+          <a href=""
+            ><img src="" alt=""
+          /></a>
+        </li>
+        <li>
+          <label for="s1-3"></label>
+          <label for="s1-5"></label>
+          <a href=""
+            ><img src="" alt=""
+          /></a>
+        </li>
+        <li>
+          <label for="s1-4"></label>
+          <label for="s1-1"></label>
+          <a href=""
+            ><img src="" alt=""
+          /></a>
+        </li>
+      </ul>
+
+      <div class="indicators">
+        <label for="s1-1" style="right: 0%"></label>
+        <label for="s1-2" style="right: 0%"></label>
+        <label for="s1-3" style="right: 0%"></label>
+        <label for="s1-4" style="right: 5%"></label>
+        <label for="s1-5" style="right: 0%"></label>
+      </div>
+    </div>
+    <div class="menu wid-720">
+      <div class="menu-1">
+        <ul class="disib wid-720">
+          <li><img src="" /></li>
+          <li><img src="" /></li>
+          <li><img src="" /></li>
+          <li><img src="" /></li>
+          <li><img src="" /></li>
+        </ul>
+      </div>
+      <div class="menu-2">
+        <ul>
+          <li><img src="" /></li>
+          <li><img src="" /></li>
+          <li><img src="" /></li>
+          <li><img src="" /></li>
+          <li><img src="" /></li>
+        </ul>
+      </div>
+    </div>
+    <div class="block-img wid-720">
+      <img class="img-one disb" src="" alt="" />
+      <img class="img-two disb" src="" alt="" />
+      <img class="img-three disb" src="" alt="" />
+    </div>
+    <div class="long-img wid-720">
+      <img class="disib wid-720" src="" alt="" />
+    </div>
+    <div class="wid-720 posr">
+    <div class="foot-bar wid-720 posf">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  </body>
+</html>
