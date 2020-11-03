@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>JS Bin</title>
+  </head>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-image: url(https://css-tricks.com/wp-content/uploads/2016/06/web_heart_animation.png);
+      background-position: 0 0;
+      transition: 0s 9999s;
+    }
+
+    div:active {
+      transition: 1s;
+      transition-timing-function: steps(28);
+      background-position: 100% 0;
+    }
+
+    /* @keyframes L-shape {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: 100% 0;
+      }
+    }
+    div {
+      width: 100px;
+      height: 100px;
+      background-image: url(https://css-tricks.com/wp-content/uploads/2016/06/web_heart_animation.png);
+    }
+    div:active {
+      animation-name: L-shape;
+      animation-timing-function: linear;
+      animation-duration: 10s;
+    } */
+  </style>
+  <body>
+    <div></div>
+  </body>
+</html>

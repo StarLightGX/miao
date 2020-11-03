@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>JS Bin</title>
+  </head>
+  <style>
+    * {
+      background-color: rgba(44, 44, 44, 0.3);
+      box-shadow: inset 0 0 6px white;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: 1000s;
+      text-decoration: none;
+      list-style: none;
+      width: 330px;
+      margin: auto;
+      margin-top: 100px;
+      transform-style: preserve-3d;
+      transition: 3s;
+    }
+
+    div {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      transform: rotatex(-30deg) rotatey(-30deg);
+    }
+
+    body:hover div {
+      transform: rotatex(90deg) rotatey(180deg);
+    }
+
+    span {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      display: block;
+      margin: 0;
+    }
+    span:nth-child(1) {
+      left: 50px;
+      transform: rotatex(-90deg) rotatey(90deg);
+      background-image: url(https://pic4.zhimg.com/80/v2-1eedb2246c8980a91346ea89bf9ccca3_720w.png);
+      background-position: -105px -315px;
+    }
+    span:nth-child(2) {
+      left: -50px;
+      transform: rotatey(90deg) rotatez(90deg);
+      background-color: rgba(255, 0, 0, 0.6);
+    }
+
+    span:nth-child(3) {
+      top: -50px;
+      transform: rotatey(90deg) rotatex(90deg);
+      background-image: url(https://pic4.zhimg.com/80/v2-1eedb2246c8980a91346ea89bf9ccca3_720w.png);
+      background-position: -205px -215px;
+    }
+
+    span:nth-child(4) {
+      top: 50px;
+      transform: rotatey(90deg) rotatex(90deg);
+      background-color: rgba(255, 0, 0, 0.6);
+    }
+
+    span:nth-child(5) {
+      transform: rotate(-90deg) translateZ(50px);
+      background-image: url(https://pic4.zhimg.com/80/v2-1eedb2246c8980a91346ea89bf9ccca3_720w.png);
+      background-position: -105px -215px;
+    }
+
+    span:nth-child(6) {
+      transform: translateZ(-50px);
+      background-color: rgba(255, 0, 0, 0.6);
+    }
+  </style>
+  <body>
+    <div>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </body>
+</html>
