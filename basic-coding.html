@@ -16,20 +16,18 @@
   var a = Number(prompt());
   var b = Number(prompt());
   var c = Number(prompt());
-  var sum = a + b
-  var reminder = sum / c
-  var r = (sum - reminder) / c
-  console.log(r);
+  var sum = a + b;
+  var reminder = sum / c;
+  var r = (sum - reminder) / c;
+  console.log(Math.floor(r));
 </script>
 
-<script type="norun" id="ch0103/04">
+<script xtype="norun" id="ch0103/04">
   var a = Number(prompt());
   var b = Number(prompt());
-  var c = Number(prompt());
-  var sum = a + b
-  var reminder = sum / c
-  var r = (sum - reminder) / c
-  console.log(r, reminder);
+  var reminder = Math.floor(a / b);
+  var r = a % b;
+  console.log(reminder, r);
 </script>
 
 <script type="norun" id="ch0103/05">
@@ -81,7 +79,7 @@
 <script type="norun" id="ch0103/11">
   var a = Number(prompt());
   var b = Number(prompt());
-  console.log(a % b)
+  console.log((a % b).toFixed(4));
 </script>
 
 <script type="norun" id="ch0103/12">
@@ -92,12 +90,12 @@
   } else console.log("error");
 </script>
 <script type="norun" id="ch0103/13">
-  var n = Number(prompt())
-  var r1 = a % 10
-  var r2 = (n - r1) / 10 % 10
-  var r3 = (n - r1 - r2 * 10) / 100 % 10
-  var r = "" + r1 + r2 + r3
-  console.log(r)
+  var n = Number(prompt());
+  var r1 = n % 10;
+  var r2 = ((n - r1) / 10) % 10;
+  var r3 = ((n - r1 - r2 * 10) / 100) % 10;
+  var r = "" + r1 + r2 + r3;
+  console.log(r);
 </script>
 <script type="norun" id="ch0103/14">
   var h = Number(prompt());
@@ -182,8 +180,8 @@
   var num = prompt();
   var b = String.fromCharCode(num);
   if (b % 2 == 0) {
-    console.log("no");
-  } else console.log("yes");
+    console.log("NO");
+  } else console.log("YES");
 </script>
 <script type="norun" id="ch0104/05">
   var x = Number(prompt());
@@ -212,8 +210,8 @@
 <script type="norun" id="ch0104/08">
   var n = Number(prompt());
   if (n % 3 == 0 && n % 5 == 0) {
-    console.log("yes");
-  } else console.log("no");
+    console.log("YES");
+  } else console.log("NO");
 </script>
 <script type="norun" id="ch0104/09">
   var n = Number(prompt());
@@ -264,42 +262,49 @@
   } else console.log("YES");
 </script>
 <script type="norun" id="ch0104/12">
-  var a = Number(prompt())
-  var b = 200 * 3
-  if(a > b){
-    console.log("Bike")
-  } else if(a == b)
-    console.log("all")
-  }else console.log("Walk")
+  var a = Number(prompt());
+  var t1 = a / 1.2;
+  var t2 = a / 3 + 27 + 23;
+  if (t1 < t2) {
+    console.log("Walk");
+  } else if (t1 == t2) {
+    console.log("All");
+  } else console.log("Bike");
 </script>
 <script type="norun" id="ch0104/13">
   var N = Number(prompt());
-  if (N >= 0 && N < 5) {
-    console.log(N + 2.5);
-  } else
-    if (N >= 5 && N < 10) {
-      console.log(2 - 1.5 * (N - 3) * (N - 3));
-    } else if (N >= 10 && N < 20) {
-        console.log(N / (2 - 1.5));
-      } else console.log("error");
+  if (N < 5) {
+    console.log((-N + 2.5).toFixed(3));
+  } else if (N < 10) {
+    console.log((2 - 1.5 * (N - 3) * (N - 3)).toFixed(3));
+  } else if (N < 20) {
+    console.log((N / (2 - 1.5)).toFixed(3));
+  } else console.log("error");
 </script>
 <script type="norun" id="ch0104/14">
   var g = Number(prompt());
   var j = prompt();
   var x = 5;
-  var q = 0;
+  var p = 0;
   if (g <= 1000) {
-    q = 8;
-  } else q = 8 + Math.ceil((g - 1000) / 500) * 4;
+    p = 8;
+  } else p = 8 + Math.ceil((g - 1000) / 500) * 4;
   if (j == "y") {
-    console.log((q = q + 5));
-  } else console.log(q);
+    console.log((p = p + 5));
+  } else console.log(p);
 </script>
 <script type="norun" id="ch0104/15">
   var a = Number(prompt());
   var b = Number(prompt());
   var c = Number(prompt());
-  console.log(Math.max(a, b, c));
+  var max = a;
+  if (b > max) {
+    max = b;
+  }
+  if (c > max) {
+    max = c;
+  }
+  console.log(max);
 </script>
 <script type="norun" id="ch0104/16">
   var a = Number(prompt());
@@ -319,10 +324,10 @@
 <script type="norun" id="ch0104/17">
   var a = Number(prompt());
   if (a % 4 == 0 && a % 100 != 0) {
-    console.log("yes");
+    console.log("Y");
   } else if (a % 400 == 0 && a % 3200 != 0) {
-      console.log("yes");
-    } else console.log("no");
+    console.log("Y");
+  } else console.log("N");
 </script>
 <script type="norun" id="ch0104/18">
   var x = Number(prompt());
@@ -356,22 +361,24 @@
   var delta = b * b - 4 * a * c;
   if (delta < 0) {
     console.log(
-      (-b / (2 * a)).toFixed(5) +
+      "x1=" +
+        (-b / (2 * a)).toFixed(5) +
         "+" +
         (Math.sqrt(4 * a * c - b * b) / (2 * a)).toFixed(5) +
         "i"
     );
     console.log(
-      (-b / (2 * a)).toFixed(5) +
+      "x2=" +
+        (-b / (2 * a)).toFixed(5) +
         "-" +
         (Math.sqrt(4 * a * c - b * b) / (2 * a)).toFixed(5) +
         "i"
     );
   } else if ((delta = 0)) {
-    console.log((x = -b / (2 * a)).toFixed(5));
+    console.log("x1=" + (-b / (2 * a)).toFixed(5));
   } else {
-    console.log(((-b + Math.sqrt(delta)) / (2 * a)).toFixed(5));
-    console.log(((-b - Math.sqrt(delta)) / (2 * a)).toFixed(5));
+    console.log("x1=" + ((-b + Math.sqrt(delta)) / (2 * a)).toFixed(5));
+    console.log("x2=" + ((-b - Math.sqrt(delta)) / (2 * a)).toFixed(5));
   }
 </script>
 <script type="norun" id="ch0104/21">
