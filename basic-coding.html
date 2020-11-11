@@ -107,9 +107,9 @@
   console.log(Math.ceil(v / (pi * r * r * h)));
 </script>
 <script type="norun" id="ch0103/15">
+  var n = Number(prompt());
   var x = Number(prompt());
   var y = Number(prompt());
-  var n = Number(prompt());
   var r = n - Math.ceil(y / x)
   console.log(r)
 </script>
@@ -215,7 +215,7 @@
     console.log("yes");
   } else console.log("no");
 </script>
-<script xtype="norun" id="ch0104/09">
+<script type="norun" id="ch0104/09">
   var n = Number(prompt());
   // if (n % 3 == 0 && n % 5 == 0 && n % 7 == 0) {
   //   console.log("3 5 7");
@@ -284,7 +284,16 @@
       } else console.log("error");
 </script>
 <script type="norun" id="ch0104/14">
-  var a = Number(prompt())
+  var g = Number(prompt());
+  var j = prompt();
+  var x = 5;
+  var q = 0;
+  if (g <= 1000) {
+    q = 8;
+  } else q = 8 + Math.ceil((g - 1000) / 500) * 4;
+  if (j == "y") {
+    console.log((q = q + 5));
+  } else console.log(q);
 </script>
 <script type="norun" id="ch0104/15">
   var a = Number(prompt());
@@ -366,9 +375,9 @@
   }
 </script>
 <script type="norun" id="ch0104/21">
+  var n = Number(prompt());
   var x = Number(prompt());
   var y = Number(prompt());
-  var n = Number(prompt());
-  var r = n - Math.ceil(y / x)
-  console.log(r)
+  var r = n - Math.ceil(y / x);
+  console.log(r);
 </script>
