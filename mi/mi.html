@@ -6,12 +6,19 @@
     <title>Document</title>
   </head>
   <style type="text/less">
+    html {
+      box-sizing: border-box;
+    }
+    *,
+    ::after,
+    ::before {
+      box-sizing: inherit;
+    }
     * {
       background-color: rgba(0, 0, 0, 0.1);
       box-shadow: inset 0 0 6px blue;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
       transition: 0.3s;
       text-decoration: none;
       list-style: none;
@@ -50,6 +57,7 @@
     .flor {
       float: right;
     }
+    .visv{visibility: visible;}
 
     /* 顶图 */
     div.top-bgc {
@@ -295,7 +303,7 @@
       .list-main {
         height: 460px;
         width: 234px;
-        padding: 20px 0;
+        xpadding: 20px 0;
         z-index: 50;
       }
       .list-main > li {
@@ -517,7 +525,121 @@
         }
 
         .part-two {
+          height: 672px;
         }
+        .brick-all {
+          float: right;
+          display: flex;
+          position: relative;
+          justify-content: flex-end;
+          width: 1226px;
+        }
+
+        .brick-part {
+          height: 58px;
+          color: gold;
+          display: inline-block;
+          line-height: 58px;
+          transition: color 0s 999999s;
+        }
+
+        .brick-all .sbrick-part:first-child {
+          color: red;
+        }
+        .brick-all:hover .brick-part {
+          color: gold;
+          transition: none;
+        }
+        .brick-all .brick-part:hover {
+          color: red;
+          transition: none;
+        }
+
+        .brick-list li {
+          visibility: hidden;
+          position: absolute;
+          right: 0;
+          top: 100%;
+          width: 992px;
+          height: 614px;
+          transition: visibility 0s 99999s;
+        }
+
+        .brick-list li div {
+          float: left;
+          width: 234px;
+          height: 300px;
+          margin-left: 14px;
+          margin-bottom: 14px;
+          padding: 20px 0px;
+        }
+
+        .brick-list li .brick-list-foot {
+          height: 143px;
+        }
+
+        .brick-part:first-child > .brick-list li {
+          visibility: visible;
+        }
+
+        .brick-all:hover .brick-part li {
+          visibility: hidden;
+          transition: none;
+        }
+        .brick-part:hover > .brick-list li {
+          visibility: visible;
+          transition: none;
+        }
+
+        h2.brick-head {
+          margin: 0;
+          line-height: 58px;
+          position: absolute;
+          left: 0;
+        }
+
+        .brick-img-large {
+          margin: 0;
+          position: absolute;
+          top: 58px;
+          height: 614px;
+          width: 234px;
+        }
+
+        .brick-img-small-one {
+          margin: 0;
+          position: absolute;
+          top: 58px;
+          height: 300px;
+          width: 234px;
+        }
+
+        .brick-img-small-two {
+          margin: 0;
+          position: absolute;
+          top: 372px;
+          height: 300px;
+          width: 234px;
+        }
+
+        .video{
+          div{
+            div{line-height: 58px;
+            color: gold;
+            &:hover{color: red;}
+            }
+            height: 58px;
+          }
+
+          li{
+          display: inline-block;
+          float: left;
+          width: 296px;
+          height: 285px;
+          margin: 0 0 14px 14px;
+          &:nth-child(1){margin: 0 0 14px;}
+          }
+          }
       }
     }
     /* 底部内容栏 */
@@ -721,7 +843,7 @@
     <div class="master wid-1226 mag-a posr">
       <!-- 主滑动图左侧边栏 -->
       <ul class="list-main posa">
-        <li>
+        <li style="padding-top: 20px;height: 62px;">
           1
           <ul class="select-1 posr list-main-ul disn list-col-4">
             <li></li>
@@ -928,7 +1050,7 @@
             <li></li>
           </ul>
         </li>
-        <li>
+        <li style="padding-bottom: 20px;height: 62px;">
           10
           <ul class="select-10 posr list-main-ul disn list-col-3">
             <li></li>
@@ -1024,10 +1146,260 @@
           </div>
         </div>
         <div class="img-one wid-1226"></div>
-        <div class="part-two">
-          <h2>手机</h2>
-          <div class="wid-1226"></div>
+        <div class="part-two posr wid-1226">
+          <div class="brick-all">
+            <div class="brick-part ">
+              查看全部
+              <ul class="brick-list">
+                <li style="visibility: visible;">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </li>
+              </ul>
+            </div>
+            <h2 class="brick-head">手机</h2>
+          </div>
+          <div class="brick-img-large">1111</div>
         </div>
+        <div class="img-one wid-1226"></div>
+        <div class="part-two posr wid-1226">
+          <div class="brick-all">
+            <div class="brick-part">
+              热门
+              <ul class="brick-list">
+                <li style="visibility: visible;">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="brick-list-foot"></div>
+                  <div class="brick-list-foot"></div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="brick-part">
+              电视影音
+              <ul class="brick-list">
+                <li>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="brick-list-foot"></div>
+                  <div class="brick-list-foot"></div>
+                </li>
+              </ul>
+            </div>
+            <h2 class="brick-head">家电</h2>
+          </div>
+          <div class="brick-img-small-one">1111</div>
+          <div class="brick-img-small-two">1111</div>
+        </div>
+        <div class="img-one wid-1226"></div>
+        <div class="part-two posr wid-1226">
+          <div class="brick-all">
+            <div class="brick-part">
+              热门
+              <ul class="brick-list">
+                <li style="visibility: visible;">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="brick-list-foot"></div>
+                  <div class="brick-list-foot"></div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="brick-part">
+              安防
+              <ul class="brick-list">
+                <li>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="brick-list-foot"></div>
+                  <div class="brick-list-foot"></div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="brick-part">
+              出行
+              <ul class="brick-list">
+                <li>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="brick-list-foot"></div>
+                </li>
+              </ul>
+            </div>
+            <h2 class="brick-head">智能</h2>
+          </div>
+          <div class="brick-img-small-one">1111</div>
+          <div class="brick-img-small-two">1111</div>
+        </div>
+        <div class="img-one wid-1226"></div>
+        <div class="part-two posr wid-1226">
+          <div class="brick-all">
+            <div class="brick-part">
+              热门
+              <ul class="brick-list">
+                <li style="visibility: visible;">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="brick-list-foot"></div>
+                  <div class="brick-list-foot"></div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="brick-part">
+              耳机音箱
+              <ul class="brick-list">
+                <li>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="brick-list-foot"></div>
+                  <div class="brick-list-foot"></div>
+                </li>
+              </ul>
+            </div>
+            <h2 class="brick-head">搭配</h2>
+          </div>
+          <div class="brick-img-small-one">1111</div>
+          <div class="brick-img-small-two">1111</div>
+        </div>
+        <div class="img-one wid-1226"></div>
+        <div class="part-two posr wid-1226">
+          <div class="brick-all">
+            <div class="brick-part">
+              热门
+              <ul class="brick-list">
+                <li style="visibility: visible;">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="brick-list-foot"></div>
+                  <div class="brick-list-foot"></div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="brick-part">
+              充电器
+              <ul class="brick-list">
+                <li>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="brick-list-foot"></div>
+                  <div class="brick-list-foot"></div>
+                </li>
+              </ul>
+            </div>
+            <h2 class="brick-head">配件</h2>
+          </div>
+          <div class="brick-img-small-one">1111</div>
+          <div class="brick-img-small-two">1111</div>
+        </div>
+        <div class="img-one wid-1226"></div>
+        <div class="part-two posr wid-1226">
+          <div class="brick-all">
+            <div class="brick-part">
+              热门
+              <ul class="brick-list">
+                <li  style="visibility: visible;">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="brick-list-foot"></div>
+                  <div class="brick-list-foot"></div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="brick-part">
+              出行
+              <ul class="brick-list">
+                <li>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="brick-list-foot"></div>
+                  <div class="brick-list-foot"></div>
+                </li>
+              </ul>
+            </div>
+            <h2 class="brick-head">周边</h2>
+          </div>
+          <div class="brick-img-small-one">1111</div>
+          <div class="brick-img-small-two">1111</div>
+        </div>
+        <div class="img-one wid-1226"></div>
+        <div class="video posr">
+          <div class="wid-1226">
+            <div class="disib flor">查看全部</div> 
+          <h2 class="brick-head disib">视频
+          </h2></div>
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
       </div>
     </div>
     <!-- 底部内容栏 -->
@@ -1037,6 +1409,14 @@
     <!-- 尾部信息栏 -->
     <div class="end">
       <div class="end-one mag-a"></div>
+      <div class="video">
+        <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
     </div>
   </body>
 </html>
