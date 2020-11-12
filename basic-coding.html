@@ -22,7 +22,7 @@
   console.log(Math.floor(r));
 </script>
 
-<script xtype="norun" id="ch0103/04">
+<script type="norun" id="ch0103/04">
   var a = Number(prompt());
   var b = Number(prompt());
   var reminder = Math.floor(a / b);
@@ -388,3 +388,296 @@
   var r = n - Math.ceil(y / x);
   console.log(r);
 </script>
+
+<script type="norun" id="ch0105/01">
+  var n = Number(prompt());
+  var num = 0;
+  var sum = 0;
+  while (num < n) {
+    var s = Number(prompt());
+    sum = sum + s;
+    num = num + 1;
+  }
+  console.log((sum / n).toFixed(2));
+</script>
+
+<script type="norun" id="ch0105/02">
+  var n = 12;
+  var num = 0;
+  var sum = 0;
+  while (num < 12) {
+    var s = Number(prompt());
+    sum = sum + s;
+    num = num + 1;
+  }
+  console.log("$" + (sum / 12).toFixed(2));
+</script>
+<script type="norun" id="ch0105/03">
+  var n = Number(prompt());
+  var num = 0;
+  var sum = 0;
+  while (num < n) {
+    var s = Number(prompt());
+    sum = sum + s;
+    num = num + 1;
+  }
+  console.log((sum / n).toFixed(4));
+</script>
+<script type="norun" id="ch0105/04">
+  var n = Number(prompt());
+  var num = 0;
+  var sum = 0;
+  while (num < n) {
+    var s = Number(prompt());
+    sum = sum + s;
+    num = num + 1;
+  }
+  console.log(sum + " " + (sum / n).toFixed(5));
+</script>
+<script type="norun" id="ch0105/05">
+  var n = Number(prompt());
+  var num = 0;
+  var max = 0;
+  while (num < n) {
+    var s = Number(prompt());
+    if (max < s) {
+      max = s;
+    }
+    num = num + 1;
+  }
+  console.log(max);
+</script>
+<script type="norun" id="ch0105/06">
+  var n = Number(prompt());
+  var num = 0;
+  var max = 0;
+  var min = 0;
+  while (num < n) {
+    var s = Number(prompt());
+    if (max < s) {
+      max = s;
+    }
+    if (min > s) {
+      min = s;
+    }
+    num = num + 1;
+  }
+  console.log(max - min);
+</script>
+<script type="norun" id="ch0105/07">
+  var n = Number(prompt());
+  var num = 0;
+  var asum = 0;
+  var bsum = 0;
+  var csum = 0;
+  var sum = 0;
+  while (num < n) {
+    var a = Number(prompt());
+    asum = asum + a;
+    var b = Number(prompt());
+    bsum = bsum + b;
+    var c = Number(prompt());
+    csum = csum + c;
+    sum = sum + a + b + c;
+    num = num + 1;
+  }
+  console.log(asum + " " + bsum + " " + csum + " " + sum);
+</script>
+<script type="norun" id="ch0105/08">
+  var n = Number(prompt());
+  var num = 0;
+  var sum = 0;
+  var x = 0;
+  while (num < n - 1) {
+    var d = Number(prompt());
+    sum = sum + d;
+    num = num + 1;
+  }
+  x = (n - 2) * 180 - sum;
+  console.log(x);
+</script>
+<script type="norun" id="ch0105/09">
+  var m = Number(prompt());
+  var n = Number(prompt());
+  var x = n - m + 1;
+  var num = 0;
+  var sum = 0;
+  while (num < x) {
+    if (m <= n) {
+      if (m % 2 != 0) {
+        sum = sum + m;
+      }
+    }
+    m = m + 1;
+    num = num + 1;
+  }
+  console.log(sum);
+</script>
+<script type="norun" id="ch0105/10">
+  var m = Number(prompt());
+  var n = Number(prompt());
+  var x = n - m + 1;
+  var num = 0;
+  var sum = 0;
+  while (num < x) {
+    if (m <= n) {
+      if (m % 17 == 0) {
+        sum = sum + m;
+      }
+    }
+    m = m + 1;
+    num = num + 1;
+  }
+  console.log(sum);
+</script>
+<script type="norun" id="ch0105/11">
+  var n = Number(prompt());
+  var num = 0;
+  var sum1 = 0;
+  var sum5 = 0;
+  var sum10 = 0;
+  while (num < n) {
+    var k = Number(prompt());
+    if (k == 1) {
+      sum1 = sum1 + 1;
+    }
+    if (k == 5) {
+      sum5 = sum5 + 1;
+    }
+    if (k == 10) {
+      sum10 = sum10 + 1;
+    }
+    num = num + 1;
+  }
+  console.log(sum1, sum5, sum10);
+</script>
+<script type="norun" id="ch0105/12">
+  var n = Number(prompt());
+  var N = Number(prompt());
+  var num = 0;
+  var sum = 0;
+  while (num < n) {
+    var k = Number(prompt());
+    if (k == N) {
+      sum = sum + 1;
+    }
+    num = num + 1;
+  }
+  console.log(sum);
+</script>
+<script type="norun" id="ch0105/13">
+  var n = Number(prompt());
+  var N = Number(prompt());
+  var num = 0;
+  var x = n;
+  while (num <= N - 2) {
+    x = x * n;
+    num = num + 1;
+  }
+  console.log(x);
+</script>
+
+<script type="norun" id="ch0105/14">
+  var r = Number(prompt());
+  var n = Number(prompt());
+  var num = 0;
+  while (num < n) {
+    r = r + 0.001 * r;
+    num = num + 1;
+  }
+  console.log(r.toFixed(4));
+</script>
+
+<script type="norun" id="ch0105/15">
+  var R = Number(prompt());
+  var M = Number(prompt());
+  var Y = Number(prompt());
+  var num = 0;
+  while (num < Y) {
+    M = M + (R / 100) * M;
+    num = num + 1;
+  }
+  console.log(Math.floor(M));
+</script>
+<script type="norun" id="ch0105/16">
+  var N = Number(prompt());
+  var K = Number(prompt());
+  var M = 200;
+  var num = 1;
+  var n = 50;
+  var a = 0;
+
+  while (n < M) {
+    M = M + (K / 100) * M;
+    n = n + N;
+    num = num + 1;
+  }
+  if (num < 20) {
+    console.log(num);
+  } else console.log("Impossible");
+</script>
+<script type="norun" id="ch0105/17">
+  var k = Number(prompt());
+  var k1 = 1;
+  var k2 = 1;
+  var num = 2;
+  var k3 = 0;
+  if (k == 1) {
+    k3 = k1;
+  }
+  if (k == 2) {
+    k3 = k1 + k2;
+  }
+  if (k > 2) {
+    while (num < k) {
+      k3 = k1 + k2;
+      k1 = k2;
+      k2 = k3;
+      num = num + 1;
+    }
+  }
+  console.log(k3);
+</script>
+<script type="norun" id="ch0105/18"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
+<script type="norun" id="ch0105/01"></script>
