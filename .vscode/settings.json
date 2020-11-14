@@ -1,3 +1,12 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "editor.cursorWidth": 300,
+    "editor.cursorStyle": "line",
+    "files.defaultLanguage": "html",
+    "editor.renderLineHighlight": "all",
+    "workbench.colorCustomizations": {
+        "editor.lineHighlightBackground": "#00000090",
+        "editor.lineHighlightBorder": "#ffffff30"
+    }
+    
 }
