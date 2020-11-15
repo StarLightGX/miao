@@ -1098,26 +1098,7 @@
   }
 </script>
 <script type="norun" id="ch0105/44">
-  var n = Number(prompt());
-  var counter = 0;
-  var sum = 0;
-  if (n == 1) {
-    console.log(2);
-  }
-  for (var i = 2; ; i++) {
-    for (var c = 2; c <= i; c++) {
-      if (i % c == 0) {
-        if (i == c) {
-          counter++;
-          var res = i;
-        } else break;
-      }
-    }
-    if (counter == n) {
-      console.log(res);
-      break;
-    }
-  }
+  var n = Number(prompt())
 </script>
 <script type="norun" id="ch0105/45">
   var day = Number(prompt());
@@ -1130,6 +1111,30 @@
   }
   console.log(money);
 </script>
+<script type="norun" id="ch0105/45">
+  var res = "";
+  for (var i = 0; i < 7; i++) {
+    res += "#";
+    console.log(res);
+  }
+</script>
+<script xtype="norun" id="ch0105/45">
+  for (i = 1; i <= 100; i++) {
+    if (i % 3 == 0 && i % 5 == 0) {
+      console.log(FizzBuzz);
+    }
+    if (i % 3 == 0) {
+      console.log(Fizz);
+    }
+    if (i % 5 == 0) {
+      console.log(Buzz);
+      console.log(i);
+    }
+  }
+</script>
+<script type="norun" id="ch0105/45"></script>
+<script type="norun" id="ch0105/45"></script>
+<script type="norun" id="ch0105/45"></script>
 <style>
   * {
     background: #000;

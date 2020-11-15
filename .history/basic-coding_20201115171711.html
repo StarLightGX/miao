@@ -957,21 +957,7 @@
 </script>
 
 <script type="norun" id="ch0105/38">
-  var n = Number(prompt());
-  var result = "";
-  if (n == 0) {
-    console.log(0);
-  } else {
-    for (var i = 0; i <= n; i++) {
-      var c = Number(prompt());
-      if (n - i == 0) {
-        result = result;
-      } else {
-        result += (n - i) * c + " ";
-      }
-    }
-    console.log(result);
-  }
+  var n = Number(prompt())
 </script>
 
 <script type="norun" id="ch0105/39">
@@ -1097,26 +1083,18 @@
     }
   }
 </script>
-<script type="norun" id="ch0105/44">
+<script xtype="norun" id="ch0105/44">
   var n = Number(prompt());
-  var counter = 0;
-  var sum = 0;
-  if (n == 1) {
-    console.log(2);
-  }
-  for (var i = 2; ; i++) {
-    for (var c = 2; c <= i; c++) {
-      if (i % c == 0) {
-        if (i == c) {
-          counter++;
-          var res = i;
-        } else break;
-      }
+  var result = "";
+
+  if (n == 0) {
+    console.log(0);
+  } else {
+    for (var i = 0; i < n; i++) {
+      var c = Number(prompt());
+      result += (n - i) * c + " ";
     }
-    if (counter == n) {
-      console.log(res);
-      break;
-    }
+    console.log(result);
   }
 </script>
 <script type="norun" id="ch0105/45">
@@ -1130,6 +1108,7 @@
   }
   console.log(money);
 </script>
+
 <style>
   * {
     background: #000;
