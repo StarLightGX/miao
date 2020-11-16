@@ -1130,7 +1130,7 @@
   }
   console.log(money);
 </script>
-<script type="norun" id="sqrt">
+<script type="norun" id="ch0105/45">
   //sqrt: 求一个正数的平方根
   var sqrt = function (x) {
     var res = Math.sqrt(x);
@@ -1138,7 +1138,7 @@
   };
   console.log(sqrt(4));
 </script>
-<script type="norun" id="narcissistic">
+<script type="norun" id="ch0105/45">
   //narcissistic: 写一个函数判断一个数是否为水仙花数
   var narcissistic = function (x) {
     var res = 0;
@@ -1154,7 +1154,7 @@
   };
   console.log(narcissistic(152));
 </script>
-<script type="norun" id="narcissistics">
+<script type="norun" id="ch0105/45">
   //narcissistics: 输出10000以内的所有水仙花数
 
   var narcissistics = function (a) {
@@ -1175,7 +1175,7 @@
   };
   console.log(narcissistics(10000));
 </script>
-<script type="norun" id="palindrom">
+<script type="norun" id="ch0105/45">
   //palindrom: 写函数求阶乘
   var palindrom = function (x) {
     var sum = 0;
@@ -1193,46 +1193,27 @@
   };
   console.log(palindrom(5));
 </script>
-<script type="norun" id="weekday">
+<script type="norun" id="ch0105/45">
   //weekday: 给写年和月，计算这个月的第一天是星期几
 </script>
-<script type="norun" id="complete-number">
+<script xtype="norun" id="ch0105/45">
   //complete-number: 写一个函数求一个数是否为完全数（它的因子之和等于它自己）
-  var completenumber = function (x) {
-    var n = x;
-    var res = 0;
-    for (var i = 1; i < x; i++) {
-      if (n % i == 0) {
-        res += i;
-      }
+  var completenumber = fuction(x){
+    var n = x
+    var res = 0
+    for (var i = 1; i <= x; i++) {
+    if (n % i == 0) {
+      res += i;
     }
-    if (res == x) {
-      return x;
-    }
-  };
-  console.log(completenumber(6));
+  }
+  if (res == x) {
+    return x;
+  }}
 </script>
-<script type="norun" id="complete-numbers">
+<script type="norun" id="ch0105/45">
   //complete-numbers: 输出1000以内的所有完数
-  var completenumbers = function (q) {
-    var num = 0;
-    for (x = 1; x < q; x++) {
-      var n = x;
-      var res = 0;
-      for (var i = 1; i < x; i++) {
-        if (n % i == 0) {
-          res += i;
-        }
-      }
-      if (res == x) {
-        num += x + " ";
-      }
-    }
-    return num;
-  };
-  console.log(completenumbers(1000));
 </script>
-<script type="norun" id="prime">
+<script xtype="norun" id="ch0105/45">
   //prime: 判断素数
   var isPrime = function (n) {
     var sqrt_n = Math.sqrt(n);
@@ -1251,84 +1232,33 @@
   };
   console.log(isPrime(5));
 </script>
-<script type="norun" id="primes">
+<script type="norun" id="ch0105/45">
   //primes: 输出1000以内的素数
-  var isPrime = function (q) {
-    var sum = 0;
+  var isPrime = function (x) {
     var res = "";
-    for (var x = 1; x < q; x++) {
-      var n = x;
+    for (var n = 2; n <= x; n++) {
       var sqrt_n = Math.sqrt(n);
-      if (n == 2 || n == 3) {
-        res += n + " ";
-      } else {
-        for (var i = 2; i < sqrt_n; i++) {
-          if (n % i == 0) {
-          }
-        }
+      for (var i = 2; i < sqrt_n; i++) {
+        if (n % i == 0) {
+        } else res += n;
       }
-    }
-    return res;
+    }  return res;
   };
   console.log(isPrime(1000));
 </script>
-<script type="norun" id="itob">
+<script type="norun" id="ch0105/45">
   //itob: 不使用隐式类型转换将一个数字转换为字符串
 </script>
-<script xtype="norun" id="lcf&lcm">
+<script type="norun" id="ch0105/45">
   //lcf: 写函数求出两个数的最大公约数
-  var lcf = function (x, y) {
-    var a = 0;
-    var b = 0;
-    var c = 0;
-    var d = 0;
-    var res = 0;
-    if (x > y) {
-      a = x;
-      b = y;
-    } else {
-      a = y;
-      b = x;
-    }
-    while (a % 2 == 0 && b % 2 == 0) {
-      a = a / 2;
-      b = b / 2;
-      c += 2;
-    }
-    while (true) {
-      d = a - b;
-      if (d > b) {
-        a = d;
-      } else if (d == b) {
-        res = d;
-        break;
-      } else {
-        a = b;
-        b = d;
-      }
-    }
-    if (c == 0) {
-      res = res;
-    } else res = res * c;
-    return res;
-  };
-  console.log(lcf(260, 104));
-
-  //lcm: 写函数求出两个数的最小公倍数
-  var lcm = function (g, k) {
-    var res = (g * k) / lcf(g, k);
-    return res;
-  };
-  console.log(lcm(18, 20));
 </script>
-<script type="norun" id="lcm">
+<script type="norun" id="ch0105/45">
   //lcm: 写函数求出两个数的最小公倍数
-  var lcm = function (g, k) {
-    var res = (g * k) / lcf(g, k);
-    return res;
-  };
-  console.log(lcm(18, 20));
 </script>
+<script type="norun" id="ch0105/45"></script>
+<script type="norun" id="ch0105/45"></script>
+<script type="norun" id="ch0105/45"></script>
+<script type="norun" id="ch0105/45"></script>
 
 <style>
   * {
