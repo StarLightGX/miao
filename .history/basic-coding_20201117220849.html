@@ -1164,10 +1164,7 @@
     var res = Math.sqrt(x);
     return res;
   };
-
-  var n = Number(prompt());
-    console.log(sqrt(n));
-
+  console.log(sqrt(4));
 </script>
 <script xtype="norun">
   function digitwidth (x){
@@ -1215,14 +1212,7 @@
   if(exp(x) == x){return true}
   else return false
     };
-
-
-  var n = Number(prompt());
-  if (narcissistic(n)) {
-    console.log("YES");
-  } else {
-    console.log("NO");
-  }
+    console.log(narcissistic(153));
 </script>
 <script xtype="norun" id="narcissistics">
   //narcissistics: 输出10000以内的所有水仙花数
@@ -1236,7 +1226,6 @@
     }return res
   }
   console.log(narcissistics(10000));
-
 </script>
 <script type="norun" id="factorial">
   //: 写函数求阶乘
@@ -1255,7 +1244,6 @@
     return sum;
   };
   console.log(palindrom(5));
-  
 </script>
 <script xtype="norun" id="palindrom">
 // palindrom: 判断一个数字是否是回文数字
@@ -1271,13 +1259,8 @@ function palindrom(x) {
     return true}
     else return false
 }
-
-  var n = Number(prompt());
-  if (palindrom(n)) {
-    console.log("YES");
-  } else {
-    console.log("NO");
-  }
+console.log(palindrom(12321))
+console.log(palindrom(12345))
 </script>
 <script xtype="norun" id="weekday">
   //weekday: 给写年和月，计算这个月的第一天是星期几
@@ -1305,11 +1288,7 @@ function palindrom(x) {
       return t + Math.abs(Math.floor(w));
     }
   }
-    var C = Number(prompt());
-    var M = Number(prompt());
-    var D = Number(prompt());
-    console.log(weekday(C, M, D))
-
+  console.log(weekday(2020, 11, 18));
 </script>
 <script xtype="norun" id="complete-number">
   //complete-number: 写一个函数求一个数是否为完全数（它的因子之和等于它自己）
@@ -1328,13 +1307,6 @@ function palindrom(x) {
     } else return false;
   }
   console.log(completenumber(6));
-
-  var n = Number(prompt());
-  if (completenumber(n)) {
-    console.log("YES");
-  } else {
-    console.log("NO");
-  }
 </script>
 <script xtype="norun" id="complete-numbers">
   //complete-numbers: 输出1000以内的所有完数
@@ -1367,13 +1339,6 @@ function palindrom(x) {
     return true;
   }
   console.log(prime(5));
-
-  var n = Number(prompt());
-  if (prime(n)) {
-    console.log("YES");
-  } else {
-    console.log("NO");
-  }
 </script>
 <script xtype="norun" id="primes">
   //primes: 输出1000以内的素数
@@ -1433,20 +1398,14 @@ function palindrom(x) {
     } else res = res * c;
     return res;
   }
-    var n = Number(prompt());
-    var N = Number(prompt());
-    console.log(lcf(n,N))
+  console.log(lcf(260, 104));
 
   //lcm: 写函数求出两个数的最小公倍数
   function lcm(g, k) {
     var res = (g * k) / lcf(g, k);
     return res;
   }
-
-
-    var n = Number(prompt());
-    var N = Number(prompt());
-    console.log(lcm(n,N))
+  console.log(lcm(18, 20));
 </script>
 <script xtype="norun" id="lcm">
   //lcm: 写函数求出两个数的最小公倍数
@@ -1454,10 +1413,7 @@ function palindrom(x) {
     var res = (g * k) / lcf(g, k);
     return res;
   }
-    var n = Number(prompt());
-    var N = Number(prompt());
-    console.log(lcm(n,N))
-
+  console.log(lcm(18, 20));
 </script>
 
 <style>

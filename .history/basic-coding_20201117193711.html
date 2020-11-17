@@ -1130,116 +1130,81 @@
   }
   console.log(money);
 </script>
-<script xtype="norun" id="sqrt">
-  //sqrt: 求一个正数的平方根
+<script type="norun" id="sqrt">
+    //sqrt: 求一个正数的平方根
 
-  //二分法
-  // function sqrt(n) {
-  //   var l = 0;
-  //   var r = n;
-  //   var m = (l = r) / 2;
-  //   while (r - l > 0.000001) {
-  //     if (m * m == n) {
-  //       return m;
-  //     }
-  //     if (m * m < n) {
-  //       l = m;
-  //     }
-  //     if (m * m < n) {
-  //       r = m;
-  //     }
-  //   }
-  //   return;
-  // }
+    //二分法
+    function sqrt(n) {
+      var l = 0;
+      var r = n;
+      var m = (l = r) / 2;
+      while (r - l > 0.000001) {
+        if (m * m == n) {
+          return m;
+        }
+        if (m * m < n) {
+          l = m;
+        }
+        if (m * m < n) {
+          r = m;
+        }
+      }
+      return;
+    }
 
   //牛顿法
-  function sqrt(n) {
-    var x = n;
-    while (Math.abs(x * x - n) > 0.00000001) {
-      x = x / 2 + (n / 2) * x;
+    function sqrt(n){
+      var x = n
+      while(Math.abs(x * x - n) > 0.00000001){
+        x = x / 2 + n / 2 * x
+      }
+      return x
     }
-    return x;
-  }
-  var sqrt = function (x) {
-    var res = Math.sqrt(x);
-    return res;
-  };
-
-  var n = Number(prompt());
-    console.log(sqrt(n));
-
-</script>
-<script xtype="norun">
-  function digitwidth (x){
-    var width = 0
-    var m = x
-    do{var digit = m % 10
-      m = (m - digit) / 10
-      width++
-    }while(m > 0)
-    return width
-  }
-  console.log(digitwidth(153))
-
-  function power(x,n){
-    var exp = 1
-    for(i = 1;i <= n;i++){ 
-      exp *= x 
-    }return exp
-  }
-
-  function exp(x){
-    var width = 0
-    var m = x
-    do{var digit = m % 10
-      m = (m - digit) / 10
-      width++
-    }while(m > 0)
-    var m = x
-    sum = 0
-    do{ 
-      var exp = 1
-      var digit = m % 10
-      m = (m - digit) / 10
-    sum += power(digit,width)}
-    while(m > 0)
-   return sum
-  }
-
-</script>
-
-</script>
-<script xtype="norun" id="narcissistic">
-    //narcissistic: 写一个函数判断一个数是否为水仙花数
-  function narcissistic(x) {
-  if(exp(x) == x){return true}
-  else return false
+    var sqrt = function (x) {
+      var res = Math.sqrt(x);
+      return res;
     };
-
-
-  var n = Number(prompt());
-  if (narcissistic(n)) {
-    console.log("YES");
-  } else {
-    console.log("NO");
-  }
+    console.log(sqrt(4));
 </script>
-<script xtype="norun" id="narcissistics">
+<script type="norun" id="narcissistic">
+  //narcissistic: 写一个函数判断一个数是否为水仙花数
+  var narcissistic = function (x) {
+    var res = 0;
+    var n = x;
+    while (n > 0) {
+      var digit = n % 10;
+      res = res + digit * digit * digit;
+      n = (n - digit) / 10;
+    }
+    if (res == x) {
+      return res;
+    } else return false;
+  };
+  console.log(narcissistic(152));
+</script>
+<script type="norun" id="narcissistics">
   //narcissistics: 输出10000以内的所有水仙花数
 
-  function narcissistics(x){
-    var res = ""
-    for(var i = 1;i <= x;i++){
-      if(narcissistic(i)){
-       res += i + " "; 
+  var narcissistics = function (a) {
+    var num = "";
+    for (var x = 1; x <= a; x++) {
+      var res = 0;
+      var n = x;
+      while (n > 0) {
+        var digit = n % 10;
+        res = res + digit * digit * digit;
+        n = (n - digit) / 10;
       }
-    }return res
-  }
+      if (res == x) {
+        num += res + " ";
+      }
+    }
+    return num;
+  };
   console.log(narcissistics(10000));
-
 </script>
-<script type="norun" id="factorial">
-  //: 写函数求阶乘
+<script type="norun" id="palindrom">
+  //palindrom: 写函数求阶乘
   var palindrom = function (x) {
     var sum = 0;
     var sumx = 1;
@@ -1255,45 +1220,21 @@
     return sum;
   };
   console.log(palindrom(5));
-  
 </script>
-<script xtype="norun" id="palindrom">
-// palindrom: 判断一个数字是否是回文数字
-function palindrom(x) {
-  var res = ''
-  var m = x
-  do{
-    var digit = m % 10
-    res += digit
-    m = (m - digit) / 10
-  }while(m > 0)
-  if(res == String(x)){
-    return true}
-    else return false
-}
-
-  var n = Number(prompt());
-  if (palindrom(n)) {
-    console.log("YES");
-  } else {
-    console.log("NO");
-  }
-</script>
-<script xtype="norun" id="weekday">
+<script type="norun" id="weekday">
   //weekday: 给写年和月，计算这个月的第一天是星期几
-  function weekday(c, m, d) {
+  let weekday = function (c, m, d) {
     let y = c % 100;
     let w = 0;
-    let t = "星期 ";
     if (c <= 1582 && m <= 10 && d <= 4) {
       c = (c - y) / 100;
-      w = y + y / 4 + c / 4 - 2 * c + (13 * (m + 1)) / 5 + d + 2;
-      if (w > 0) {
+      w = (y + y / 4 + c / 4 - 2 * c + (13 * (m + 1)) / 5 + d + 2)
+       if (w > 0) {
         w = w % 7;
       } else {
         w = ((w % 7) + 7) % 7;
-      }
-      return t + Math.abs(Math.floor(w));
+      } ;
+      return Math.abs(Math.floor(w));
     } else {
       c = (c - y) / 100;
       w = y + y / 4 + c / 4 - 2 * c + (26 * (m + 1)) / 10 + d - 1;
@@ -1302,50 +1243,44 @@ function palindrom(x) {
       } else {
         w = ((w % 7) + 7) % 7;
       }
-      return t + Math.abs(Math.floor(w));
+      return Math.abs(Math.floor(w));
     }
-  }
-    var C = Number(prompt());
-    var M = Number(prompt());
-    var D = Number(prompt());
-    console.log(weekday(C, M, D))
-
+  };
+  console.log(weekday(2020, 11, 18));
 </script>
-<script xtype="norun" id="complete-number">
+<script type="norun" id="complete-number">
   //complete-number: 写一个函数求一个数是否为完全数（它的因子之和等于它自己）
-  function completenumber(x) {
+  var completenumber = function (x) {
     var n = x;
-    var res = 1;
-    for (var i = 2; i * i < x; i++) {
+    var res = 0;
+    for (var i = 1; i < x; i++) {
       if (n % i == 0) {
-        var j = n / i
-        if(i == j){res = res += i}
-       else res += i + j;
+        res += i;
       }
     }
     if (res == x) {
-      return true;
-    } else return false;
-  }
+      return x;
+    }
+  };
   console.log(completenumber(6));
-
-  var n = Number(prompt());
-  if (completenumber(n)) {
-    console.log("YES");
-  } else {
-    console.log("NO");
-  }
 </script>
 <script xtype="norun" id="complete-numbers">
   //complete-numbers: 输出1000以内的所有完数
-  function completenumbers(x) {
-    var res = "";
-    for (var i = 1; i <= x; i++) {
-      if (completenumber(i)) {
-        res += i + " ";
+  function completenumbers(q) {
+    var num = 0;
+    for (x = 1; x < q; x++) {
+      var n = x;
+      var res = 0;
+      for (var i = 1; i < x; i++) {
+        if (n % i == 0) {
+          res += i;
+        }
+      }
+      if (res == x) {
+        num += x + " ";
       }
     }
-    return res;
+    return num;
   }
   console.log(completenumbers(1000));
 </script>
@@ -1367,19 +1302,12 @@ function palindrom(x) {
     return true;
   }
   console.log(prime(5));
-
-  var n = Number(prompt());
-  if (prime(n)) {
-    console.log("YES");
-  } else {
-    console.log("NO");
-  }
 </script>
 <script xtype="norun" id="primes">
   //primes: 输出1000以内的素数
   function primes(x) {
     var res = "";
-    for (var i = 1; i <= x; i++) {
+    for (i = 1; i <= x; i++) {
       if (prime(i)) {
         res += i + " ";
       }
@@ -1433,20 +1361,14 @@ function palindrom(x) {
     } else res = res * c;
     return res;
   }
-    var n = Number(prompt());
-    var N = Number(prompt());
-    console.log(lcf(n,N))
+  console.log(lcf(260, 104));
 
   //lcm: 写函数求出两个数的最小公倍数
   function lcm(g, k) {
     var res = (g * k) / lcf(g, k);
     return res;
   }
-
-
-    var n = Number(prompt());
-    var N = Number(prompt());
-    console.log(lcm(n,N))
+  console.log(lcm(18, 20));
 </script>
 <script xtype="norun" id="lcm">
   //lcm: 写函数求出两个数的最小公倍数
@@ -1454,10 +1376,7 @@ function palindrom(x) {
     var res = (g * k) / lcf(g, k);
     return res;
   }
-    var n = Number(prompt());
-    var N = Number(prompt());
-    console.log(lcm(n,N))
-
+  console.log(lcm(18, 20));
 </script>
 
 <style>
