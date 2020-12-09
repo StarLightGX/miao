@@ -184,20 +184,14 @@ var starlightgx = function () {
   }
 
   function maxBy(aryobj, f) {
-    if(f)
-    let max = f(aryobj[0])
-    let point = 0
+  let max = f(aryobj[0])
     for (let i = 1; i < aryobj.length; i++) {
       
-      if (max < f(aryobj[i])) {
-        max = f(aryobj[i])
-        point = i
-      }  
+      max >= f(aryobj[i]) ? max : max = f(aryobj[i])
+      f(aryobj[i])
     }
-    return aryobj[point]
+    return aryobj[i]
   }
-
-
   function minBy(obj, f) {
   }
 

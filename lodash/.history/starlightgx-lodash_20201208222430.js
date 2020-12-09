@@ -184,7 +184,6 @@ var starlightgx = function () {
   }
 
   function maxBy(aryobj, f) {
-    if(f)
     let max = f(aryobj[0])
     let point = 0
     for (let i = 1; i < aryobj.length; i++) {
@@ -196,8 +195,6 @@ var starlightgx = function () {
     }
     return aryobj[point]
   }
-
-
   function minBy(obj, f) {
   }
 

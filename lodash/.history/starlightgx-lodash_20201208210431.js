@@ -42,7 +42,13 @@ var starlightgx = function () {
     return ary
   }
 
-
+  function findindex(ary,f,index = 0){
+    
+  }
+  function findLastindex(ary,f,index = 0){
+    
+  }
+  
   function flatten(ary){
     for (let i = 0; i < ary.length; i++){
       if (Arrary.isArray(ary[i]) ) {
@@ -52,7 +58,14 @@ var starlightgx = function () {
   }
 
 
+  function flattenDeep(){
+    
+  }
 
+
+  function flattenDepth(){
+    
+  }
 
   function fromPairs(ary){
     let result = {}
@@ -99,7 +112,7 @@ var starlightgx = function () {
       return []
     }
     let result = []
-    if (n == 0) {
+    if (n = 0) {
       for (let i = 1; i < ary.length; i++){
       result.push(ary[i])
       }
@@ -113,94 +126,6 @@ var starlightgx = function () {
 
 
 
-    function dropRight(ary, n = 1) {
-    if (n >= ary.length) {
-      return []
-    }
-    let result = []
-    if (n == 0) {
-      return ary
-    }else{
-    for (let i = 0; i < ary.length - n; i++){
-      result.push(ary[i])
-      }
-    }
-    return result
-  }
-
-  function reverse(ary) {
-    let result = []
-    for (let i = ary.length - 1; i >= 0; i--){
-      result.push(ary[i])
-    }
-    return result
-  }
-
-  function max(ary) {
-    if(ary == []){return undefined}
-    let max = ary[0]
-    for (let i = 1; i < ary.length; i++){
-      max >= ary[i] ? max : max = ary[i]
-    }
-    return max
-  }
-
-
-  function min(ary) {
-    if(ary == []){return undefined}
-    let min = ary[0]
-    for (let i = 1; i < ary.length; i++){
-      min <= ary[i] ? min : min = ary[i]
-    }
-    return min
-  }
-
-  function sum(ary) {
-    if(ary == []){return undefined}
-    let sum = ary[0]
-    for (let i = 1; i < ary.length; i++){
-      sum += ary[i]
-    }
-    return sum
-  }
-
-  function findindex(ary,f,index = 0){
-  }
-  function findLastindex(ary,f,index = 0){
-  }
-  function flattenDeep(){
-  }
-  function flattenDepth(){
-  }
-  function chunk(){
-  }
-  function sortedindex(){
-  }
-  function filter(ary,f){
-  }
-  function find(ary,f){
-  }
-  function toArray(val){
-  }
-
-  function maxBy(aryobj, f) {
-    if(f)
-    let max = f(aryobj[0])
-    let point = 0
-    for (let i = 1; i < aryobj.length; i++) {
-      
-      if (max < f(aryobj[i])) {
-        max = f(aryobj[i])
-        point = i
-      }  
-    }
-    return aryobj[point]
-  }
-
-
-  function minBy(obj, f) {
-  }
-
   return {
     compact,
     join,
@@ -211,13 +136,6 @@ var starlightgx = function () {
     head,
     indexOf,
     initial,
-    drop,
-    dropRight,
-    reverse,
-    max,
-    min,
-    sum,
-
 
 
   }

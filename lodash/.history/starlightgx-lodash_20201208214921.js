@@ -140,28 +140,9 @@ var starlightgx = function () {
     if(ary == []){return undefined}
     let max = ary[0]
     for (let i = 1; i < ary.length; i++){
-      max >= ary[i] ? max : max = ary[i]
+      max >= ary[i] ? max : ary[i]
     }
     return max
-  }
-
-
-  function min(ary) {
-    if(ary == []){return undefined}
-    let min = ary[0]
-    for (let i = 1; i < ary.length; i++){
-      min <= ary[i] ? min : min = ary[i]
-    }
-    return min
-  }
-
-  function sum(ary) {
-    if(ary == []){return undefined}
-    let sum = ary[0]
-    for (let i = 1; i < ary.length; i++){
-      sum += ary[i]
-    }
-    return sum
   }
 
   function findindex(ary,f,index = 0){
@@ -182,25 +163,6 @@ var starlightgx = function () {
   }
   function toArray(val){
   }
-
-  function maxBy(aryobj, f) {
-    if(f)
-    let max = f(aryobj[0])
-    let point = 0
-    for (let i = 1; i < aryobj.length; i++) {
-      
-      if (max < f(aryobj[i])) {
-        max = f(aryobj[i])
-        point = i
-      }  
-    }
-    return aryobj[point]
-  }
-
-
-  function minBy(obj, f) {
-  }
-
   return {
     compact,
     join,
@@ -213,12 +175,7 @@ var starlightgx = function () {
     initial,
     drop,
     dropRight,
-    reverse,
-    max,
-    min,
-    sum,
-
-
+    reverse
 
   }
 }()
