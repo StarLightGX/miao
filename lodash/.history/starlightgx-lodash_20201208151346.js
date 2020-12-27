@@ -1,8 +1,0 @@
-var starlightgx = function () {
-  
-
-
-
-  
-  return{}
-}()
