@@ -288,13 +288,12 @@ var starlightgx = function () {
 
   function dropRightWhile(ary, predicate = identity) {
     predicate = iteratee(predicate)
-    let res = []
-    for (let i = 0; i < ary.length; i++) {
+    for (var i = ary.length - 1; i >= 0; i--) {
       if (!predicate(ary[i])) {
-        res.push(ary[i])
+        break
       }
     }
-    return res
+    return ary.slice(0, i + 1)
   }
 
   function reverse(ary) {
@@ -1034,7 +1033,7 @@ var starlightgx = function () {
 
   function flip(func) {
     return function (...args) {
-      return flip.call(...args.reverse())
+      return func(...args.reverse())
     }
   }
 
