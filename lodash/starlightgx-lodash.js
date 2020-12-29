@@ -4,7 +4,10 @@ var starlightgx = function () {
   //类型转换
 
   function get(obj, path, defaultValue = undefined) {
-    let names = path.split(".")
+    let names = path
+    if (typeJudge(path) == "[object String]") {
+      names = toPath(path)
+    }
     for (let name of names) {
       if (name in Object(obj)) {
         obj = obj[name]
@@ -410,7 +413,7 @@ var starlightgx = function () {
       if (Array.isArray(ary[i])) {
         if (depth == 0) {
           res.push(ary[i])
-          return
+          continue
         }
         depth--
         flattenDepth(ary[i], depth, res)
@@ -660,7 +663,7 @@ var starlightgx = function () {
   }
 
   function indexOf(ary, val, fromIndex = 0) {
-    if (fromIndex < 0) {
+    if (fromIndex < 0 && fromIndex + ary.length >= 0) {
       for (let i = ary.length - 1; i >= fromIndex; i--) {
         if (ary[i] == val) {
           return i
@@ -895,9 +898,9 @@ var starlightgx = function () {
     itee = iteratee(itee)
     let res = []
     for (let i = 0; i < collection.length; i++) {
-      res.push(itee(collection[i]))
+      res.push(flattenDepth(itee(collection[i]), depth))
     }
-    return res = flattenDepth(res, depth)
+    return res
   }
 
   function keyBy(collection, itee = identity) {
@@ -1030,7 +1033,7 @@ var starlightgx = function () {
 
   function flip(func) {
     return function (...args) {
-      return flip.call(this, ...args.reverse())
+      return flip.call(...args.reverse())
     }
   }
 
@@ -1042,7 +1045,7 @@ var starlightgx = function () {
 
   function spread(func, start = 0) {
     return function (...args) {
-      return func.apply(this, args)
+      return func.apply(this, args.slice(0))
     }
   }
 
@@ -1053,7 +1056,7 @@ var starlightgx = function () {
     return typeJudge(val) == "[object Function]"
   }
   function isObject(val) {
-    return typeJudge(val) == "[object Object]"
+    return typeJudge(val) == "[object Object]" || typeJudge(val) == "[object Array]" || typeJudge(val) == "[object Function]"
   }
   function isArray(val) {
     return typeJudge(val) == "[object Array]"
@@ -1071,7 +1074,7 @@ var starlightgx = function () {
     return typeJudge(val) == "[object Null]"
   }
   function isNil(val) {
-    return typeJudge(val) == "[object Undefined]"
+    return typeJudge(val) == "[object Undefined]" || typeJudge(val) == "[object Null]"
   }
   function isNaN(val) {
     if (typeJudge(val) == "[object Number]") {
