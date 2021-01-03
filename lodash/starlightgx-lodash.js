@@ -271,6 +271,16 @@ var starlightgx = function () {
     return result
   }
 
+  function dropWhile(ary, predicate = identity) {
+    predicate = iteratee(predicate)
+    for (var i = 0; i < ary.length; i++) {
+      if (!predicate(ary[i])) {
+        break
+      }
+    }
+    return ary.slice(i)
+  }
+
   function dropRight(ary, n = 1) {
     if (n >= ary.length) {
       return []
@@ -388,6 +398,59 @@ var starlightgx = function () {
     for (let k = 0; k < ary.length; k++) {
       if (ary[k] != undefined) {
         res.push(ary[k])
+      }
+    }
+    return res
+  }
+
+  function differenceBy(ary, ...val) {
+    let res = []
+    let itee
+    let valcopy
+    let str
+    if (typeJudge(val[val.length - 1]) == "[object String]") {
+      str = val[val.length - 1]
+      for (let i = 0; i < ary.length; i++) {
+        if (flattenDeep(val.slice(0, val.length - 1))[0][str] !== ary[i][str]) {
+          res.push(ary[i])
+        }
+      }
+      return res
+    } else
+      if (typeJudge(val[val.length - 1]) == "[object Array]") {
+        itee = identity
+        valcopy = flattenDeep(val.slice())
+      } else {
+        itee = iteratee(val[val.length - 1])
+        valcopy = flattenDeep(val.slice(0, val.length - 1))
+      }
+
+    let mapary = {}
+    let mapval = {}
+    for (let i = 0; i < ary.length; i++) {
+      mapary[itee(ary[i])] = ary[i];
+    }
+    for (let i = 0; i < valcopy.length; i++) {
+      mapval[itee(valcopy[i])] = valcopy[i];
+    }
+    for (let key in mapary) {
+      if (!(key in mapval)) {
+        if (Number(mapary[key]) == NaN) {
+          res.push(mapary[key])
+        } else {
+          res.push(Number(mapary[key]))
+        }
+      }
+    }
+    return res
+  }
+
+  function differenceWith(ary, val, comparator) {
+    let res = []
+    str = val[val.length - 1]
+    for (let i = 0; i < ary.length; i++) {
+      if (!comparator(val[0], ary[i])) {
+        res.push(ary[i])
       }
     }
     return res
@@ -528,7 +591,6 @@ var starlightgx = function () {
   }
 
   function forEach(collection, predicate = identity) {
-
     if (typeJudge(collection) == "[object Object]") {
       let res = {}
       for (let key in collection) {
@@ -695,6 +757,21 @@ var starlightgx = function () {
     return right
   }
 
+  function sortedIndexBy(ary, val, itee = identity) {
+    itee = iteratee(itee)
+    let left = 0
+    let right = ary.length
+    while (left < right) {
+      let mid = (left + right) >>> 1
+      if (itee(ary[mid]) < val) {
+        left = mid + 1
+      } else {
+        right = mid
+      }
+    }
+    return right
+  }
+
   function sortedIndexOf(ary, val) {
     let left = 0
     let right = ary.length - 1
@@ -726,6 +803,21 @@ var starlightgx = function () {
     return right
   }
 
+  function sortedLastIndexBy(ary, val, itee = identity) {
+    itee = iteratee(itee)
+    let left = 0
+    let right = ary.length
+    while (left < right) {
+      let mid = (left + right) >>> 1
+      if (itee(ary[mid]) <= val) {
+        left = mid + 1
+      } else {
+        right = mid
+      }
+    }
+    return right + 1
+  }
+
   function sortedLastIndexOf(ary, val) {
     let index = sortedLastIndex(ary, val)
     if (ary[index - 1] === val) {
@@ -742,7 +834,6 @@ var starlightgx = function () {
         map[ary[i]] = (~~map[ary[i]]) + 1
       }
     }
-
     for (let key in map) {
       if (map[key] == args.length) {
         res.push(Number(key))
@@ -751,11 +842,96 @@ var starlightgx = function () {
     return res
   }
 
-  function pull(ary, ...val) {
-    while (val[0] !== undefined) {
-      let same = val.shift()
+  function intersectionBy(ary, ...args) {
+    let res = []
+    let itee = iteratee(args[args.length - 1])
+    let valcopy = flattenDeep(args.slice(0, args.length - 1))
+    let mapary = {}
+    let mapval = {}
+    if (typeJudge(args[args.length - 1]) == "[object String]") {
+      str = args[args.length - 1]
+      for (let i = 0; i < args.length; i++) {
+        if (valcopy[i][str] == ary[0][str]) {
+          res.push(ary[0])
+        }
+      }
+      return res
+    }
+    for (let i = 0; i < ary.length; i++) {
+      mapary[itee(ary[i])] = ary[i];
+    }
+    for (let i = 0; i < valcopy.length; i++) {
+      mapval[itee(valcopy[i])] = valcopy[i];
+    }
+    for (let key in mapary) {
+      if (key in mapval) {
+        if (Number(mapary[key]) == NaN) {
+          res.push(mapary[key])
+        } else {
+          res.push(Number(mapary[key]))
+        }
+      }
+    }
+    return res
+  }
+
+  function intersectionWith(ary, val, comparator) {
+    let res = []
+    str = val[val.length - 1]
+    for (let i = 0; i < ary.length; i++) {
+      if (comparator(val[1], ary[i])) {
+        res.push(ary[i])
+      }
+    }
+    return res
+  }
+
+  function pull(ary, ...vals) {
+    while (vals[0] !== undefined) {
+      let same = vals.shift()
       for (let i = 0; i < ary.length; i++) {
         if (ary[i] == same) {
+          ary.splice(i, 1)
+          i--
+        }
+      }
+    }
+    return ary
+  }
+
+  function pullAll(ary, vals) {
+    while (vals[0] !== undefined) {
+      let same = vals.shift()
+      for (let i = 0; i < ary.length; i++) {
+        if (ary[i] == same) {
+          ary.splice(i, 1)
+          i--
+        }
+      }
+    }
+    return ary
+  }
+
+  function pullAllBy(ary, vals, itee = identity) {
+    itee = iteratee(itee)
+    while (vals[0] !== undefined) {
+      let same = itee(vals.shift())
+      for (let i = 0; i < ary.length; i++) {
+        if (itee(ary[i]) == same) {
+          ary.splice(i, 1)
+          i--
+        }
+      }
+    }
+    return ary
+  }
+
+  function pullAllWith(ary, vals, itee = identity) {
+    itee = iteratee(itee)
+    while (vals[0] !== undefined) {
+      let same = vals.shift()
+      for (let i = 0; i < ary.length; i++) {
+        if (itee(same, ary[i])) {
           ary.splice(i, 1)
           i--
         }
@@ -1499,6 +1675,23 @@ var starlightgx = function () {
     return mapval
   }
 
+  function nth(ary, n = 0) {
+    let num = n
+    if (n >= 0) {
+      for (let i = 0; i < ary.length; i++) {
+        if (i == n) {
+          return ary[i];
+        }
+      }
+    } else {
+      for (let i = ary.length - 1; i > 0; i--) {
+        num++
+        if (num == 0) {
+          return ary[i]
+        }
+      }
+    }
+  }
 
   return {
     compact,
@@ -1511,7 +1704,9 @@ var starlightgx = function () {
     indexOf,
     initial,
     drop,
+    dropWhile,
     dropRight,
+    dropRightWhile,
     reverse,
     max,
     maxBy,
@@ -1520,6 +1715,8 @@ var starlightgx = function () {
     sum,
     chunk,
     difference,
+    differenceBy,
+    differenceWith,
     flatten,
     flattenDeep,
     flattenDepth,
@@ -1560,12 +1757,19 @@ var starlightgx = function () {
     findIndex,
     findLastIndex,
     sortedIndex,
+    sortedIndexBy,
     sortedIndexOf,
     sortedLastIndex,
+    sortedLastIndexBy,
     sortedLastIndexOf,
-    dropRightWhile,
     intersection,
+    intersectionBy,
+    intersectionWith,
     pull,
+    pullAll,
+    pullAllBy,
+    pullAllWith,
+
     union,
     zip,
     unzip,
@@ -1612,6 +1816,7 @@ var starlightgx = function () {
     keysIn,
     mapKeys,
     mapValues,
+    nth,
 
     isEqual,
     curry,
