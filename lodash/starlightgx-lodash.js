@@ -306,8 +306,6 @@ var starlightgx = function () {
     return ary.slice(0, i + 1)
   }
 
-
-
   function reverse(ary) {
     let result = []
     for (let i = ary.length - 1; i >= 0; i--) {
@@ -489,13 +487,14 @@ var starlightgx = function () {
 
   function filter(collection, predicate = identity, fromIndex = 0) {
     predicate = iteratee(predicate)
+    let res = []
     // if (typeJudge(predicate) == "[object Function]") {
     for (let i = 0; i < collection.length; i++) {
       if (predicate(collection[i], i, collection)) {
-        return collection[i]
+        res.push(collection[i])
       }
     }
-
+    return res
     // }
     // if (typeJudge(predicate) == "[object Object]") {
     //   for (let i = 0; i < collection.length; i++){
@@ -568,6 +567,16 @@ var starlightgx = function () {
     //   cache[predicate] = true
     //   return find(collection,cache)
     // }
+  }
+
+  function findLast(collection, predicate = identity, fromIndex = 0) {
+    predicate = iteratee(predicate)
+    collection = reverse(collection)
+    for (let i = 0; i < collection.length; i++) {
+      if (predicate(collection[i], i, collection)) {
+        return collection[i]
+      }
+    }
   }
 
   function toArray(val) {
@@ -1001,6 +1010,38 @@ var starlightgx = function () {
     return res
   }
 
+  function zipObject(ary = [], val = []) {
+    let res = {}
+    for (let i = 0; i < ary.length; i++) {
+      res[ary[i]] = val[i]
+    }
+    return res
+  }
+
+  function zipObjectDeep(ary = [], val = []) {
+    let path = []
+    for (let i = 0; i < ary.length; i++) {
+      const element = ary[i];
+      path.push(toPath(ary[i]))
+    }
+    let cache = []
+    let cache2 = {}
+    for (let i = 0; i < path.length; i++) {
+      cache2[path[i][path[i].length - 1]] = val[i]
+      cache.push(deepCopy(cache2))
+      cache2 = {}
+    }
+    let cache3 = {}
+    for (let i = 0; i < path.length; i++) {
+      cache3[path[i][1]] = cache
+    }
+    let res = {}
+    for (let i = 0; i < path.length; i++) {
+      res[path[i][0]] = cache3
+    }
+    return res
+  }
+
   function unzip(ary) {
     let res = []
 
@@ -1027,6 +1068,22 @@ var starlightgx = function () {
       }
       res.push(itee(...cache))
     }
+    return res
+  }
+
+  function zipWith(...arys) {
+    let itee = arys[arys.length - 1]
+    let ary = arys.slice(0, arys.length - 1)
+    let num = ary[0].length
+    let cache = []
+    let res = []
+    for (let i = 0; i < num; i++) {
+      for (let j = 0; j < ary.length; j++) {
+        cache.push(ary[j][i])
+      }
+    }
+    res.push(itee(...cache.slice(0, cache.length / 2)))
+    res.push(itee(...cache.slice(cache.length / 2)))
     return res
   }
 
@@ -1062,8 +1119,70 @@ var starlightgx = function () {
     return res
   }
 
-  function xorBy() {
+  function xorBy(...ary) {
+    return d(...ary)
+    function d(ary, ...val) {
+      let res = []
+      let itee
+      let valcopy
+      let str
+      if (typeJudge(val[val.length - 1]) == "[object String]") {
+        str = val[val.length - 1]
+        for (let i = 0; i < val.length; i++) {
+          if (flattenDeep(ary.slice(0, val.length - 1))[0][str] !== val[i][str]) {
+            res.push(val[i][0])
+          }
+        }
+        return [res[0]]
+      } else
+        if (typeJudge(val[val.length - 1]) == "[object Array]") {
+          itee = identity
+          valcopy = flattenDeep(val.slice())
+        } else {
+          itee = iteratee(val[val.length - 1])
+          valcopy = flattenDeep(val.slice(0, val.length - 1))
+        }
 
+      let mapary = {}
+      let mapval = {}
+      for (let i = 0; i < ary.length; i++) {
+        mapary[itee(ary[i])] = ary[i];
+      }
+      for (let i = 0; i < valcopy.length; i++) {
+        mapval[itee(valcopy[i])] = valcopy[i];
+      }
+      for (let key in mapary) {
+        if (!(key in mapval)) {
+          if (Number(mapary[key]) == NaN) {
+            res.push(mapary[key])
+          } else {
+            res.push(Number(mapary[key]))
+          }
+        }
+      }
+      for (let key in mapval) {
+        if (!(key in mapary)) {
+          if (Number(mapval[key]) == NaN) {
+            res.push(mapval[key])
+          } else {
+            res.push(Number(mapval[key]))
+          }
+        }
+      }
+      return res
+    }
+  }
+
+  function xorWith(ary, val, comparator) {
+    let res = []
+    str = val[val.length - 1]
+    for (let i = 0; i < ary.length; i++) {
+      if (!comparator(val[1], ary[i])) {
+        res.push(ary[i])
+        res.push(val[0])
+      }
+    }
+    return res
   }
 
   function countBy(collection, itee = identity) {
@@ -1779,7 +1898,7 @@ var starlightgx = function () {
       }
       res.push(ary[i])
     }
-    return res
+    return reverse(res)
   }
 
   function takeWhile(ary, predicate = identity) {
@@ -1817,9 +1936,61 @@ var starlightgx = function () {
     }
   }
 
+  function includes(collection, val, Idx = 0) {
+    if (typeJudge(collection) == "[object Array]") {
+      if (Idx >= 0) {
+        for (let i = Idx; i < collection.length; i++) {
+          if (collection[i] == val) {
+            return true
+          }
+        }
+      } else {
+        for (let i = collection.length - Idx; i >= 0; i--) {
+          if (collection[i] == val) {
+            return true
+          }
+        }
+      }
 
+    }
+    if (typeJudge(collection) == "[object Object]") {
+      for (let key in collection) {
+        if (collection[key] == val) {
+          return true
+        }
+      }
+    }
+    if (typeJudge(collection) == "[object String]") {
+      let reg = new RegExp(val)
+      return reg.test(collection)
+    }
+    return false
+  }
+
+  function invokeMap(collection, path, ...args) {
+    let res = []
+    for (let i = 0; i < collection.length; i++) {
+      if (typeof path == "string") {
+
+        res.push(collection[i][path]())
+      } else {
+        res.push(path.call(collection[i], ...args))
+      }
+    }
+    return res
+  }
+
+  function floor(number, precision = 0) {
+    if (precision == 0) {
+      return Math.floor(number)
+    }
+    return Math.floor(number * (10 ** precision)) / 10 ** precision
+  }
 
   return {
+    floor,
+    invokeMap,
+    includes,
     uniq,
     uniqBy,
     uniqWith,
@@ -1891,6 +2062,7 @@ var starlightgx = function () {
     matchesProperty,
     iteratee,
     findIndex,
+    findLast,
     findLastIndex,
     sortedIndex,
     sortedIndexBy,
@@ -1909,11 +2081,16 @@ var starlightgx = function () {
     unionBy,
     unionWith,
     zip,
+    zipObject,
+    zipObjectDeep,
     unzip,
     unzipWith,
+    zipWith,
     add,
     without,
     xor,
+    xorBy,
+    xorWith,
     countBy,
     every,
     flatMap,
