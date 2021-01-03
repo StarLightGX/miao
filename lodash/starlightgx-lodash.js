@@ -940,7 +940,8 @@ var starlightgx = function () {
     return ary
   }
 
-  function union(...ary) {
+  function union(...arys) {
+    return [...new Set(flattenDeep([...arys]))]
     let map = {}
     let res = []
     for (let i = 0; i < ary.length; i++) {
@@ -950,6 +951,37 @@ var starlightgx = function () {
     }
     for (let key in map) {
       res.push(Number(key))
+    }
+    return res
+  }
+
+  function unionBy(...arys) {
+    itee = iteratee(arys[arys.length - 1])
+    let ary = flattenDeep(arys.slice(0, arys.length - 1))
+    let set = new Set()
+    let res = []
+    for (let i = 0; i < ary.length; i++) {
+      if (set.has(itee(ary[i]))) {
+        continue
+      }
+      res.push(ary[i])
+      set.add(itee(ary[i]))
+    }
+    return res
+  }
+
+  function unionWith(obj, ...arys) {
+    itee = iteratee(arys[arys.length - 1])
+    let ary = flattenDeep(arys.slice(0, arys.length - 1))
+    let res = obj
+    for (let i = 0; i < obj.length; i++) {
+      for (let j = 0; j < ary.length; j++) {
+        if (!itee(obj[i], ary[j])) {
+          res.push(ary[j])
+          ary.splice(j - 1, 1)
+        }
+        ary.splice(j - 1, 1)
+      }
     }
     return res
   }
@@ -969,7 +1001,7 @@ var starlightgx = function () {
     return res
   }
 
-  function unzip(...ary) {
+  function unzip(ary) {
     let res = []
 
     for (let i = 0; i < ary[0].length; i++) {
@@ -1028,6 +1060,10 @@ var starlightgx = function () {
       }
     }
     return res
+  }
+
+  function xorBy() {
+
   }
 
   function countBy(collection, itee = identity) {
@@ -1693,7 +1729,107 @@ var starlightgx = function () {
     }
   }
 
+  function sortedUniq(ary) {
+    let res = []
+    let map = {}
+    for (let i = 0; i < ary.length; i++) {
+      map[ary[i]] = (~~map[ary[i]]) + 1
+    }
+    for (let key in map) {
+      res.push(Number(key))
+    }
+    return res
+  }
+
+  function sortedUniqBy(ary, itee = identity) {
+    let res = []
+    let map = {}
+    for (let i = 0; i < ary.length; i++) {
+      if (itee(ary[i]) in map) {
+        continue
+      } else {
+        map[itee(ary[i])] = [ary[i]]
+      }
+    }
+    for (let key in map) {
+      res.push(Number(map[key]))
+    }
+    return res
+  }
+
+  function tail(ary) {
+    return ary.slice(1)
+  }
+
+  function take(ary, n = 1) {
+    return ary.slice(0, n)
+  }
+
+  function takeRight(ary, n = 1) {
+    if (n == 0) { return [] }
+    return ary.slice(-n)
+  }
+
+  function takeRightWhile(ary, predicate = identity) {
+    predicate = iteratee(predicate)
+    let res = []
+    for (let i = ary.length - 1; i >= 0; i--) {
+      if (!predicate(ary[i], i, ary)) {
+        break
+      }
+      res.push(ary[i])
+    }
+    return res
+  }
+
+  function takeWhile(ary, predicate = identity) {
+    predicate = iteratee(predicate)
+    let res = []
+    for (let i = 0; i < ary.length; i++) {
+      if (!predicate(ary[i], i, ary)) {
+        break
+      }
+      res.push(ary[i])
+    }
+    return res
+  }
+
+  function uniq(ary) {
+    return union(ary)
+  }
+
+  function uniqBy(...ary) {
+    return unionBy(...ary)
+  }
+
+  function uniqWith(...arys) {
+    itee = iteratee(arys[arys.length - 1])
+    let ary = flattenDeep(arys.slice(0, arys.length - 1))
+    let res = []
+    for (let i = 0; i < ary.length; i++) {
+      for (let j = i + 1; j < ary.length; j++) {
+        if (!itee(ary[i], ary[j])) {
+          res.push(ary[i])
+          res.push(ary[j])
+        }
+      }
+      return res
+    }
+  }
+
+
+
   return {
+    uniq,
+    uniqBy,
+    uniqWith,
+    takeWhile,
+    takeRightWhile,
+    takeRight,
+    take,
+    tail,
+    sortedUniqBy,
+    sortedUniq,
     compact,
     join,
     last,
@@ -1769,8 +1905,9 @@ var starlightgx = function () {
     pullAll,
     pullAllBy,
     pullAllWith,
-
     union,
+    unionBy,
+    unionWith,
     zip,
     unzip,
     unzipWith,
