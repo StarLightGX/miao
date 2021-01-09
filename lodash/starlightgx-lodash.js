@@ -1495,7 +1495,7 @@ var starlightgx = function () {
     return findKey(cacheobj, predicate)
   }
 
-  function forin(object, itee = identity) {
+  function forIn(object, itee = identity) {
     for (let key in object) {
       if (itee(object[key], key, object) == false) {
         break
@@ -1504,7 +1504,7 @@ var starlightgx = function () {
     return object
   }
 
-  function forinRight(object, itee = identity) {
+  function forInRight(object, itee = identity) {
     let cache = []
     let cacheobj = {}
     for (let key in object) {
@@ -1987,7 +1987,249 @@ var starlightgx = function () {
     return Math.floor(number * (10 ** precision)) / 10 ** precision
   }
 
+  function castArray(val = []) {
+    if (Array.isArray(val)) {
+      return val
+    } else {
+      return [val]
+    }
+  }
+
+  function conformsTo(object, source) {
+    for (let key in source) {
+      return source[key](object[key])
+    }
+  }
+
+  function eq(value, other) {
+    if (isNaN(value) && isNaN(other)) {
+      return true
+    } else
+      return value === other
+  }
+
+  function gt(value, other) {
+    return value > other
+  }
+  function gte(value, other) {
+    return value >= other
+  }
+  function isArrayLike(value) {
+    return typeof value !== "function" && value.length % 1 == 0 && value.length < Number.MAX_SAFE_INTEGER
+  }
+  function isArrayLikeObject(value) {
+    return typeof value == "object" && value.length % 1 == 0 && value.length < Number.MAX_SAFE_INTEGER
+  }
+
+  function isInteger(value) {
+    return typeof value == "number" && value % 1 == 0
+  }
+  function isLength(value) {
+    return isInteger(value)
+  }
+
+  function isMap(value) {
+    return value instanceof Map
+  }
+
+  function isNative(value = "") {
+    return /\[native code]/.test(value.toString())
+  }
+
+  function isObjectLike(value) {
+    return value !== null && typeof value == "object"
+  }
+
+  function isPlainObject(value) {
+    let val = value
+    return typeJudge(val) == "[object Object]" && val.__proto__ == Object.prototype
+  }
+
+  function isSafeInteger(value) {
+    return isInteger(value)
+  }
+
+  function isSet(value) {
+    return typeJudge(value) == "[object Set]";
+  }
+
+  function isSymbol(value) {
+    return typeJudge(value) == "[object Symbol]";
+  }
+  function isTypedArray(value) {
+    return typeJudge(value) == "[object Uint8Array]";
+  }
+  function isWeakMap(value) {
+    return typeJudge(value) == "[object WeakMap]";
+  }
+  function isWeakSet(value) {
+    return typeJudge(value) == "[object WeakSet]";
+  }
+  function lt(value, other) {
+    return value < other;
+  }
+  function lte(value, other) {
+    return value <= other;
+  }
+  function toFinite(value) {
+    if (isNaN(value)) {
+      return NaN
+    }
+    if (value === Infinity) {
+      return Number.MAX_VALUE
+    } else if (value === -Infinity) {
+      return -Number.MAX_VALUE
+    } else {
+      return Number(value)
+    }
+  }
+  function toInteger(value) {
+    let val = toFinite(value)
+    return Math.floor(val)
+  }
+
+  function toLength(value) {
+    if (value == Infinity || value == -Infinity) {
+      return 4294967295
+    } else {
+      return toInteger(value)
+    }
+  }
+
+  function toNumber(value) {
+    return Number(value)
+  }
+
+  function toSafeInteger(value) {
+    if (value == Infinity) {
+      return Number.MAX_SAFE_INTEGER
+    } else
+      return toInteger(value)
+  }
+
+  function ceil(number, precision = 0) {
+    return Math.ceil(number * (10 ** precision)) / (10 ** precision)
+  }
+
+  function divide(dividend, divisor) {
+    return dividend / divisor
+  }
+
+  function mean(array) {
+    return array.reduce((res, item, idx) => (res * idx + item) / (idx + 1))
+  }
+
+  function meanBy(array, itee) {
+    itee = iteratee(itee)
+    return array.reduce((res, item, idx) => (res * idx + itee(item)) / (idx + 1), 0)
+  }
+
+  function multiply(multiplier, multiplicand) {
+    return multiplier * multiplicand
+  }
+
+  function sumBy(array, itee) {
+    itee = iteratee(itee)
+    return array.reduce((sum, it) => sum + itee(it), 0)
+  }
+
+  function clamp(number, lower, upper) {
+    if (number < lower) {
+      return lower;
+    } else if (number > upper) {
+      return upper;
+    } else
+      return number;
+  }
+
+  function inRange(number, start, end) {
+    if (end == undefined) {
+      end = start
+      start = 0
+    }
+    if (number > 0) {
+      return number > start && number < end
+    } else return number < start && number > end
+  }
+
+  function constant(value) {
+    return function () {
+      return value
+    }
+  }
+
+  function functionsIn(object) {
+    let res = []
+    for (let key in object) {
+      res.push(key)
+    }
+    return res
+  }
+
+  function times(n, itee = identity) {
+    itee = iteratee(itee)
+    let res = []
+    for (let i = 0; i < n; i++) {
+      res.push(itee(i))
+    }
+    return res
+  }
+
+  function at(object, paths) {
+    let path = []
+    let res = []
+
+    for (let i = 0; i < paths.length; i++) {
+      path.push(toPath(paths[i]))
+    }
+
+    for (let i = 0; i < path.length; i++) {
+      let obj = deepCopy(object)
+      for (let j = 0; j < path[i].length; j++) {
+        obj = obj[path[i][j]];
+      }
+      res.push(obj)
+    }
+    return res
+  }
+
   return {
+    at,
+    times,
+    constant,
+    inRange,
+    clamp,
+    multiply,
+    meanBy,
+    mean,
+    divide,
+    ceil,
+    toSafeInteger,
+    toNumber,
+    toLength,
+    toInteger,
+    toFinite,
+    lte,
+    lt,
+    isWeakSet,
+    isWeakMap,
+    isTypedArray,
+    isSymbol,
+    isSet,
+    isSafeInteger,
+    isPlainObject,
+    isObjectLike,
+    isNative,
+    isMap,
+    isLength,
+    isInteger,
+    isArrayLikeObject,
+    isArrayLike,
+    gte,
+    gt,
+    eq,
+    conformsTo,
+    castArray,
     floor,
     invokeMap,
     includes,
@@ -2020,6 +2262,7 @@ var starlightgx = function () {
     min,
     minBy,
     sum,
+    sumBy,
     chunk,
     difference,
     differenceBy,
@@ -2113,11 +2356,12 @@ var starlightgx = function () {
     defaultStatus,
     findKey,
     findLastKey,
-    forin,
-    forinRight,
+    forIn,
+    forInRight,
     forOwn,
     forOwnRight,
     functions,
+    functionsIn,
     isEmpty,
     round,
     subtract,
