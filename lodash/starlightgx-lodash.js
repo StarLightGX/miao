@@ -1382,7 +1382,7 @@ var starlightgx = function () {
     }
   }
 
-  function isBoolen(val) {
+  function isBoolean(val) {
     return typeJudge(val) == "[object Boolean]"
   }
   function isFunction(val) {
@@ -1988,6 +1988,9 @@ var starlightgx = function () {
   }
 
   function castArray(val = []) {
+    if (val == undefined) {
+      return [undefined]
+    }
     if (Array.isArray(val)) {
       return val
     } else {
@@ -2159,11 +2162,13 @@ var starlightgx = function () {
   }
 
   function functionsIn(object) {
-    let res = []
+    let res = [];
     for (let key in object) {
-      res.push(key)
+      if (isFunction(object[key])) {
+        res.push(key);
+      }
     }
-    return res
+    return res;
   }
 
   function times(n, itee = identity) {
@@ -2274,7 +2279,7 @@ var starlightgx = function () {
     map,
     reduce,
     reduceRight,
-    isBoolen,
+    isBoolean,
     isFunction,
     isObject,
     isArray,
