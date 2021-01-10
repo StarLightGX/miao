@@ -175,6 +175,13 @@ var starlightgx = function () {
   // if (typeJudge(val) == "[object Null]") {return }
   // if (typeJudge(val) == "[object Undefined]") {return }
 
+  function re(x) {
+    switch (x) {
+      case 'déjà vu':
+        return 'deja vu'
+
+    }
+  }
   /////////////////////////////////////////////////////////////////////////////////////////
 
   function compact(ary) {
@@ -2198,7 +2205,43 @@ var starlightgx = function () {
     return res
   }
 
+  function deburr(str) {
+    str = re(str)
+    return str
+  }
+
+  function omit(object, ary) {
+    let res = {}
+    let flag = false
+    for (let key in object) {
+      for (let i = 0; i < ary.length; i++) {
+        if (ary[i] == key) {
+          flag = true
+          break
+        }
+      }
+      if (flag == false) {
+        res[key] = object[key]
+      }
+      flag = false
+    }
+    return res
+  }
+
+
+  function omitBy(object, predicate = identity) {
+    let res = {}
+    for (let key in object) {
+      if (predicate(object[key]) == false) {
+        res[key] = object[key]
+      }
+    }
+    return res
+  }
   return {
+    omitBy,
+    omit,
+    deburr,
     at,
     times,
     constant,
