@@ -176,11 +176,8 @@ var starlightgx = function () {
   // if (typeJudge(val) == "[object Undefined]") {return }
 
   function re(x) {
-    switch (x) {
-      case 'déjà vu':
-        return 'deja vu'
-
-    }
+    let str = x.replace("é", "e")
+    return str.replace("à", "a")
   }
   /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -2228,7 +2225,6 @@ var starlightgx = function () {
     return res
   }
 
-
   function omitBy(object, predicate = identity) {
     let res = {}
     for (let key in object) {
@@ -2238,7 +2234,197 @@ var starlightgx = function () {
     }
     return res
   }
+
+  function pick(object, props) {
+    let res = {}
+    for (let key of props) {
+      if (object[key] !== undefined) {
+        res[key] = object[key]
+      }
+    }
+    return res
+  }
+
+  function pickBy(object, predicate = identity) {
+    let res = {}
+    for (let key in object) {
+      if (predicate(object[key])) {
+        res[key] = object[key]
+      }
+    }
+    return res
+  }
+
+  function result(object, path, defaultValue) {
+    let res = get(object, path, defaultValue)
+    if (typeJudge(res) === "[object Function]") {
+      return res.bind(null)()
+    }
+    return res
+  }
+
+  function set(object, path, value) {
+    let obj = object
+    if (!Array.isArray(path)) { path = toPath(path) }
+    for (var i = 0; i < path.length - 1; i++) {
+      if (object[path[i]] == undefined) {
+        if (!(isNaN(Number(path[i + 1]))) && i + 1 < path.length - 1) {
+          object[path[i]] = []
+        } else {
+          object[path[i]] = {}
+        }
+      }
+      object = object[path[i]]
+    }
+    object[path[i]] = value
+    return obj
+  }
+
+  function setWith(object, path, value, customizer) {
+    let obj = object
+    if (!Array.isArray(path)) { path = toPath(path) }
+    for (var i = 0; i < path.length - 1; i++) {
+      if (object[path[i]] == undefined) {
+        object[path[i]] = new customizer(object[path[i]], path[i], object)
+      }
+      object = object[path[i]]
+    }
+    object[path[i]] = value
+    return obj
+  }
+
+  function unset(object, path) {
+    let obj = object
+    if (!Array.isArray(path)) { path = toPath(path) }
+    for (var i = 0; i < path.length - 2; i++) {
+      if (obj[path[i]] == undefined) {
+        return false
+      }
+      obj = obj[path[i]]
+    }
+    obj[path[i]] = {}
+    return true
+  }
+
+  function toPairs(object) {
+    let res = []
+    for (let key in object) {
+      if (object.hasOwnProperty(key)) {
+        res.push([key, object[key]])
+      }
+    }
+    return res
+  }
+
+  function toPairsIn(object) {
+    let res = []
+    for (let key in object) {
+      res.push([key, object[key]])
+    }
+    return res
+  }
+
+  function update(object, path, updater) {
+    let obj = object
+    if (!Array.isArray(path)) { path = toPath(path) }
+    for (var i = 0; i < path.length - 1; i++) {
+      if (object[path[i]] == undefined) {
+        if (!(isNaN(Number(path[i + 1]))) && i + 1 < path.length - 1) {
+          object[path[i]] = []
+        } else {
+          object[path[i]] = {}
+        }
+      }
+      object = object[path[i]]
+    }
+    object[path[i]] = updater(object[path[i]])
+    return obj
+  }
+
+  function updateWith(object, path, value, customizer) {
+    let obj = object
+    if (!Array.isArray(path)) { path = toPath(path) }
+    for (var i = 0; i < path.length - 1; i++) {
+      if (object[path[i]] == undefined) {
+        object[path[i]] = new customizer(object[path[i]], path[i], object)
+      }
+      object = object[path[i]]
+    }
+    object[path[i]] = value(object[path[i]])
+    return obj
+  }
+
+  function values(object) {
+    let res = []
+    // if (typeof object == "string") {
+    //   return object.split("")
+    // }
+    for (let key in object) {
+      if (object.hasOwnProperty(key)) {
+        res.push(object[key])
+      }
+    }
+    return res
+  }
+
+  function valuesIn(object) {
+    let res = []
+    for (let key in object) {
+      res.push(object[key])
+    }
+    return res
+  }
+
+  function capitalize(string = '') {
+    return string.slice(0, 1).toUpperCase() + string.slice(1).toLowerCase()
+  }
+
+  function endsWith(string = '', target, position = string.length) {
+    let cache = string.split("")
+    return cache[position - 1] == target
+  }
+
+  function escape(string = "") {
+    return string.replace(/[\&\>\<\"\']/g, match => {
+      switch (match) {
+        case "&":
+          return '&amp;'
+        case '"':
+          return '&quot';
+        case "'":
+          return '&apos;';
+        case '<':
+          return '&lt;';
+        case '>':
+          return '&gt';
+        default:
+          return match;
+      }
+    });
+  }
+
+  function escapeRegExp(string = "") {
+    let reg = /[\^\$\.\*\+\,\?\,\(\)\[\]\{\}\|]/g
+    return string.replace(reg, match => `\\${match}`)
+  }
+
   return {
+    escapeRegExp,
+    escape,
+    endsWith,
+    capitalize,
+    valuesIn,
+    values,
+    updateWith,
+    update,
+    toPairsIn,
+    toPairs,
+    unset,
+    setWith,
+    set,
+    result,
+    pickBy,
+    pick,
     omitBy,
     omit,
     deburr,
