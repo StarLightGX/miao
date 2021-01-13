@@ -1992,8 +1992,11 @@ var starlightgx = function () {
   }
 
   function castArray(val = []) {
+    if (val == null) {
+      return [null]
+    }
     if (val == undefined) {
-      return [undefined]
+      return []
     }
     if (Array.isArray(val)) {
       return val
@@ -2408,7 +2411,23 @@ var starlightgx = function () {
     return string.replace(reg, match => `\\${match}`)
   }
 
+  function defer(func, ...args) {
+    var id = setTimeout(func, 5000, ...args);
+    return id - 1
+  }
+
+  function delay(func, wait, ...args) {
+    var id = setTimeout(func, wait, ...args);
+    return id - 1
+  }
+
+  function pad(string = '', length = 0, chars = ' ') {
+
+  }
+
   return {
+    delay,
+    defer,
     escapeRegExp,
     escape,
     endsWith,
