@@ -1381,8 +1381,8 @@ var starlightgx = function () {
   }
 
   function spread(func, start = 0) {
-    return function (...args) {
-      return func.apply(this, args.slice(0))
+    return function (args) {
+      return func.apply(this, args)
     }
   }
 
@@ -1996,7 +1996,7 @@ var starlightgx = function () {
       return [null]
     }
     if (val == undefined) {
-      return []
+      return [undefined]
     }
     if (Array.isArray(val)) {
       return val
@@ -2421,11 +2421,218 @@ var starlightgx = function () {
     return id - 1
   }
 
-  function pad(string = '', length = 0, chars = ' ') {
+  function range(start = 0, end, step = 1) {
+    let res = []
+    if (start == 0 && end == undefined) {
+      return res
+    }
+    if (end == undefined) {
+      end = start
+      start = 0
+    }
+    if (step == 0) {
+      step
+    }
+    if (step < 0) {
+      step = -step
+    }
+    res.push(start)
+    if (step == 0) {
+      end = end - 1
+    }
+    while (Math.abs(end) > res.length) {
+      if (end > 0) {
+        start = start + step
+      } else {
+        start = start - step
+      }
+      if (end == start) {
+        break
+      }
+      res.push(start)
+    }
+    return res
+  }
 
+  function rangeRight(start = 0, end, step = 1) {
+    let res = []
+    if (start == 0 && end == undefined) {
+      return res
+    }
+    if (end == undefined) {
+      end = start
+      start = 0
+    }
+    if (step == 0) {
+      step
+    }
+    if (step < 0) {
+      step = -step
+    }
+    res.push(start)
+    if (step == 0) {
+      end = end - 1
+    }
+    while (Math.abs(end) > res.length) {
+      if (end > 0) {
+        start = start + step
+      } else {
+        start = start - step
+      }
+      if (end == start) {
+        break
+      }
+      res.push(start)
+    }
+    return reverse(res)
+  }
+
+  function defaultTo(value, defaultValue) {
+    if (isNaN(value) || value == null || value == undefined) {
+      return defaultValue
+    } else return value
+  }
+
+  function words(string = '', pattern = /[^\W]+/g) {
+    return string.match(pattern)
+  }
+
+  function unary(func) {
+    return ary(func, 1)
+  }
+
+  function stringifyJson(json) {
+    return JSON.stringify(json)
+  }
+
+  function parseJson(json) {
+    return JSON.parse(json)
+  }
+
+  function coloneDeep(val) {
+    if (isRegExp(val)) {
+      return new RegExp(val)
+    }
+    return deepCopy(val)
+  }
+
+  function swap(ary, a, b) {
+    let cache = ary[a]
+    ary[a] = ary[b]
+    ary[b] = cache
+  }
+
+  function merge(object, sources) {
+    let res = []
+    for (let key in sources) {
+      res.push(object[key])
+      res.push(sources[key])
+      res = flattenDepth(res, 2)
+      object[key] = [[res[0]], [res[1], res[3]]]
+    }
+    return object
+  }
+
+  function pad(string = '', length = 0, chars = ' ') {
+    if (length == string.length) {
+      return string
+    }
+    length = length - string.length
+    let cache1 = string.split("")
+    let cache2 = chars.split("")
+    if (length % 2 == 0) {
+      let num2 = length / 2
+      let i = 0
+      while (i < num2) {
+        for (let j = cache2.length - 1; j >= 0; j--) {
+          if (i == num2) { break }
+          cache1.unshift(cache2[j])
+          i++
+        }
+      }
+      i = 0
+      while (i < num2) {
+        for (let j = 0; j < cache2.length; j++) {
+          if (i == num2) { break }
+          cache1.push(cache2[j])
+          i++
+        }
+      }
+      return cache1.join("")
+    } else {
+      let num2 = (length - 1) / 2
+      let i = 0
+      while (i < num2) {
+        for (let j = cache2.length - 1; j >= 0; j--) {
+          if (i == num2) { break }
+          cache1.unshift(cache2[j])
+          i++
+        }
+      }
+      i = 0
+      while (i < num2 + 1) {
+        for (let j = 0; j < cache2.length; j++) {
+          if (i == num2 + 1) { break }
+          cache1.push(cache2[j])
+          i++
+        }
+      }
+      return cache1.join("")
+    }
+  }
+
+  function padEnd(string = '', length = 0, chars = ' ') {
+    if (length == string.length) {
+      return string
+    }
+    length = length - string.length
+    let cache1 = string.split("")
+    let cache2 = chars.split("")
+    let num2 = length
+    let i = 0
+    while (i < num2) {
+      for (let j = 0; j < cache2.length; j++) {
+        if (i == num2) { break }
+        cache1.push(cache2[j])
+        i++
+      }
+    }
+    return cache1.join("")
+  }
+
+  function padStart(string = '', length = 0, chars = ' ') {
+    if (length == string.length) {
+      return string
+    }
+    length = length - string.length
+    let cache1 = string.split("")
+    let cache2 = chars.split("")
+    let num2 = length
+    let i = 0
+    while (i < num2) {
+      for (let j = 0; j < cache2.length; j++) {
+        if (i == num2) { break }
+        cache1.unshift(cache2[j])
+        i++
+      }
+    }
+    return cache1.join("")
   }
 
   return {
+    swap,
+    padStart,
+    padEnd,
+    pad,
+    merge,
+    coloneDeep,
+    parseJson,
+    stringifyJson,
+    unary,
+    words,
+    defaultTo,
+    rangeRight,
+    range,
     delay,
     defer,
     escapeRegExp,
