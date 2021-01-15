@@ -1657,6 +1657,9 @@ var starlightgx = function () {
     else return obj; //如果是基本数据类型就直接返回
 
     for (let key in obj) {
+      if (!((obj).hasOwnProperty(key))) {
+        break
+      }
       let copy = obj[key];
       if (typeJudge(copy) == "[object Object]") result[key] = deepCopy(copy); //递归方法 ，如果对象继续变量obj[key],下一级还是对象，就obj[key][key]
       else if (typeJudge(copy) == "[object Array]") result[key] = deepCopy(copy); //递归方法 ，如果对象继续数组obj[key],下一级还是数组，就obj[key][key]
@@ -2509,7 +2512,7 @@ var starlightgx = function () {
     return JSON.parse(json)
   }
 
-  function cloneDeep(val) {
+  function cloneDeep(val,) {
     if (isRegExp(val)) {
       return new RegExp(val)
     }
@@ -2770,7 +2773,32 @@ var starlightgx = function () {
     return string.match(/\w/g)[position] == target
   }
 
+  function pullAt(array, ...indexes) {
+    indexes = flattenDeep(indexes)
+    let res = []
+    let cache = []
+    let map = {}
+    for (let i = 0; i < array.length; i++) {
+      map[i] = array[i]
+    }
+    for (let i = 0; i < array.length; i++) {
+      if (indexes[i] in map) {
+        map[indexes[i]] = false
+        res.push(array[indexes[i]])
+
+      }
+    }
+    for (key in map) {
+      if (map[key] !== false) {
+        cache.push(array[key])
+      }
+    }
+    array = cache
+    return res
+  }
+
   return {
+    pullAt,
     startsWith,
     startCase,
     snakeCase,
