@@ -2509,7 +2509,7 @@ var starlightgx = function () {
     return JSON.parse(json)
   }
 
-  function coloneDeep(val) {
+  function cloneDeep(val) {
     if (isRegExp(val)) {
       return new RegExp(val)
     }
@@ -2619,13 +2619,182 @@ var starlightgx = function () {
     return cache1.join("")
   }
 
+  function parseInt(str, radix = 10) {
+    return Number.parseInt(str, radix)
+  }
+
+  function repeat(string = '', n = 1) {
+    if (n == 1) {
+      return string
+    }
+    let res = ""
+    for (let i = 0; i < n; i++) {
+      res = res + string
+    }
+    return res
+  }
+
+  function replace(string = "", pattern, replacement) {
+    return string.replace(pattern, replacement)
+  }
+
+  function split(string = "", separator, limit) {
+    return string.split(separator).slice(0, limit)
+  }
+
+  function toLower(string) {
+    return string.toLowerCase()
+  }
+
+  function toUpper(string) {
+    return string.toUpperCase()
+  }
+
+  function trim(string = '', chars = " ") {
+    return string.replace(new RegExp("[" + chars + "]", "g"), "")
+  }
+
+  function trimEnd(string = '', chars = " ") {
+    return string.replace(new RegExp("[" + chars + "]+$", "g"), "")
+  }
+
+  function trimStart(string = '', chars = " ") {
+    return string.replace(new RegExp("^[" + chars + "]+", "g"), "")
+  }
+
+  function unescape(string = "") {
+    const regexp = /(&amp;)|(&lt;)|(&gt;)|(&quot;)|(&#39;)/g;
+    return string.replace(regexp, match => {
+      switch (match) {
+        case "&amp;":
+          return "&";
+        case "&lt;":
+          return "<";
+        case "&gt;":
+          return ">";
+        case "&quot;":
+          return '"';
+        case "&#39;":
+          return "'";
+        default:
+          return match;
+      }
+    });
+  }
+
+  function upperCase(string = '') {
+    let cache1 = string.match(/[A-Z]/g)
+    let cache2 = string.replace(/[A-Z]/g, " " + cache1)
+    let cache3 = cache2.match(/[a-zA-Z]+/g)
+    let res = ""
+    for (var i = 0; i < cache3.length - 1; i++) {
+      res += toUpper(cache3[i]) + " "
+    }
+    res += toUpper(cache3[i])
+    return res
+  }
+
+  function upperFirst(string) {
+    return string.replace(/^\w/, str => str.toUpperCase())
+  }
+
+  function kebabCase(string = '') {
+    let cache1 = string.match(/([?:[a-z][A-Z])/g)
+    if (cache1) {
+      cache1 = cache1[0].split("")
+      string = string.replace(/([?:[a-z][A-Z])/g, cache1[0]
+        + " " + cache1[1])
+    }
+    let cache3 = string.match(/[a-zA-Z]+/g)
+    let res = ""
+    for (var i = 0; i < cache3.length - 1; i++) {
+      res += toLower(cache3[i]) + "-"
+    }
+    res += toLower(cache3[i])
+    return res
+  }
+
+  function lowerCase(string = '') {
+    let cache1 = string.match(/([?:[a-z][A-Z])/g)
+    if (cache1) {
+      cache1 = cache1[0].split("")
+      string = string.replace(/([?:[a-z][A-Z])/g, cache1[0]
+        + " " + cache1[1])
+    }
+    let cache3 = string.match(/[a-zA-Z]+/g)
+    let res = ""
+    for (var i = 0; i < cache3.length - 1; i++) {
+      res += toLower(cache3[i]) + " "
+    }
+    res += toLower(cache3[i])
+    return res
+  }
+
+  function lowerFirst(string) {
+    return string.replace(/^\w/, str => str.toLowerCase())
+  }
+
+  function snakeCase(string = '') {
+    let cache1 = string.match(/([?:[a-z][A-Z])/g)
+    if (cache1) {
+      cache1 = cache1[0].split("")
+      string = string.replace(/([?:[a-z][A-Z])/g, cache1[0]
+        + " " + cache1[1])
+    }
+    let cache3 = string.match(/[a-zA-Z]+/g)
+    let res = ""
+    for (var i = 0; i < cache3.length - 1; i++) {
+      res += toLower(cache3[i]) + "_"
+    }
+    res += toLower(cache3[i])
+    return res
+  }
+
+  function startCase(string = '') {
+    let cache1 = string.match(/([?:[a-z][A-Z])/g)
+    if (cache1) {
+      cache1 = cache1[0].split("")
+      string = string.replace(/([?:[a-z][A-Z])/g, cache1[0]
+        + " " + cache1[1])
+    }
+    let cache3 = string.match(/[a-zA-Z]+/g)
+    let res = ""
+    for (var i = 0; i < cache3.length - 1; i++) {
+      res += cache3[i].replace(/^\w/, toUpper(cache3[i].match(/^\w/)[0])) + " "
+    }
+    res += cache3[i].replace(/^\w/, toUpper(cache3[i].match(/^\w/)[0]))
+    return res
+  }
+
+  function startsWith(string = '', target, position = 0) {
+    return string.match(/\w/g)[position] == target
+  }
+
   return {
+    startsWith,
+    startCase,
+    snakeCase,
+    lowerFirst,
+    lowerCase,
+    kebabCase,
+    upperFirst,
+    upperCase,
+    unescape,
+    trimStart,
+    trimEnd,
+    trim,
+    toUpper,
+    toLower,
+    split,
+    replace,
+    repeat,
+    parseInt,
     swap,
     padStart,
     padEnd,
     pad,
     merge,
-    coloneDeep,
+    cloneDeep,
     parseJson,
     stringifyJson,
     unary,
