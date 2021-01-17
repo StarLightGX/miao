@@ -1999,7 +1999,7 @@ var starlightgx = function () {
       return [null]
     }
     if (val == undefined) {
-      return [undefined]
+      return []
     }
     if (Array.isArray(val)) {
       return val
@@ -2797,7 +2797,67 @@ var starlightgx = function () {
     return res
   }
 
+  function isEqualWith(value, other, customizer) {
+    if (customizer !== undefined) {
+      for (let i = 0; i < value.length; i++) {
+        if (customizer(value[i], other[i]) === false) {
+          return false
+        }
+      }
+      return true
+    } else {
+      return isEqual(value, other)
+    }
+  }
+
+  function method(path, ...args) {
+    return function (object) {
+      return get(object, path)(...args)
+    }
+  }
+
+  function methodOf(object, ...args) {
+    return function (path) {
+      return get(object, path)(...args)
+    }
+  }
+
+  function nthArg(n = 0) {
+    return function (...args) {
+      return nth(args, n)
+    }
+  }
+
+  function propertyOf(object) {
+    return function (path) {
+      return get(object, path)
+    }
+  }
+
+  function flow(...funcs) {
+    let that = this
+    funcs = flattenDeep(funcs)
+    return function () {
+      let res = Array.from(arguments)
+      for (let i = 0; i < funcs.length; i++) {
+        res = [funcs[i].apply(that, res)]
+      }
+      return res[0]
+    }
+  }
+
+  function uniqueId(prefix = "") {
+    return prefix + (Date.now());
+  }
+
   return {
+    uniqueId,
+    flow,
+    propertyOf,
+    nthArg,
+    methodOf,
+    method,
+    isEqualWith,
     pullAt,
     startsWith,
     startCase,
