@@ -1999,7 +1999,7 @@ var starlightgx = function () {
       return [null]
     }
     if (val == undefined) {
-      return []
+      return [undefined]
     }
     if (Array.isArray(val)) {
       return val
@@ -2849,6 +2849,7 @@ var starlightgx = function () {
   function uniqueId(prefix = "") {
     return prefix + (Date.now());
   }
+
 
   return {
     uniqueId,
